@@ -5,31 +5,31 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>Latest Posts &#8211; kosl90's Blog</title>
-<meta name="description" content="Describe this nonsense.">
-<meta name="keywords" content="Jekyll, theme, themes, responsive, blog, modern">
+<title>Golang Traps &#8211; kosl90's Blog</title>
+<meta name="description" content="record golang's traps">
+<meta name="keywords" content="golang, go">
 
 <!-- Twitter Cards -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://kosl90.github.io/images/abstract-1.jpg">
+<meta name="twitter:image" content="http://kosl90.github.io/images/abstract-3.jpg">
 
-<meta name="twitter:title" content="Latest Posts">
-<meta name="twitter:description" content="Describe this nonsense.">
+<meta name="twitter:title" content="Golang Traps">
+<meta name="twitter:description" content="record golang's traps">
 <meta name="twitter:creator" content="@kosl90">
 
 <!-- Open Graph -->
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Latest Posts">
-<meta property="og:description" content="Describe this nonsense.">
-<meta property="og:url" content="http://kosl90.github.io/index.html">
+<meta property="og:title" content="Golang Traps">
+<meta property="og:description" content="record golang's traps">
+<meta property="og:url" content="http://kosl90.github.io/golang-traps">
 <meta property="og:site_name" content="kosl90's Blog">
 
 
 
 
 
-<link rel="canonical" href="http://kosl90.github.io/">
+<link rel="canonical" href="http://kosl90.github.io/golang-traps">
 <link href="http://kosl90.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="kosl90's Blog Feed">
 
 
@@ -71,7 +71,7 @@
 
 </head>
 
-<body id="post-index" class="feature" itemscope itemtype="http://schema.org/WebPage">
+<body id="post" class="feature" itemscope itemtype="http://schema.org/WebPage">
 
 <!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
 <nav id="dl-menu" class="dl-menuwrapper" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
@@ -119,31 +119,26 @@
 </nav><!-- /.dl-menuwrapper -->
 
 
+
 <div class="entry-header">
-  
-    <div class="entry-image"><img src="http://kosl90.github.io/images/abstract-1.jpg" alt="Latest Posts" itemprop="image">
-      <div class="image-credit">Image source: <a href="http://www.dargadgetz.com/ios-7-abstract-wallpaper-pack-for-iphone-5-and-ipod-touch-retina/">dargadgetz</a></div><!-- /.image-credit -->
-    </div><!-- /.entry-image -->
-  
-  <div class="header-title">
-    <div class="header-title-wrap">
-      <h1>kosl90's Blog</h1>
-      <h2 itemprop="name">Latest Posts</h2>
-    </div><!-- /.header-title-wrap -->
-  </div><!-- /.header-title -->
+  <div class="entry-image"><img src="http://kosl90.github.io/images/abstract-3.jpg" alt="Golang Traps" itemprop="image">
+    <div class="image-credit">Image source: <a href="http://www.dargadgetz.com/ios-7-abstract-wallpaper-pack-for-iphone-5-and-ipod-touch-retina/">dargadgetz</a></div><!-- /.image-credit -->
+  </div><!-- /.entry-image -->
 </div><!-- /.entry-header -->
 
+
 <div id="main" role="main" itemprop="mainContentOfPage" itemscope itemtype="http://schema.org/Blog">
-  
-<article class="hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
-    <div class="entry-meta"><span class="entry-date date published updated"><time datetime="2014-02-20T00:00:00+08:00" itemprop="datePublished"><a href="http://kosl90.github.io/golang-traps">February 20, 2014</a></time></span><span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="fn"><a href="http://kosl90.github.io/about" title="About Lee" itemprop="url">Lee</a></span></span></div><!-- /.entry-meta -->
-    
-      <h1 class="entry-title" itemprop="name"><a href="http://kosl90.github.io/golang-traps" rel="bookmark" title="Golang Traps" itemprop="url">Golang Traps</a></h1>
-    
-  </header>
-  <div class="entry-content" itemprop="description">
-    <p>这段时间，在公司项目中使用了golang，感觉golang的确有他独到的地方，尤其是
+  <article class="hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+    <header class="header-title">
+      <div class="header-title-wrap">
+        
+          <h1 class="entry-title" itemprop="name"><a href="http://kosl90.github.io/golang-traps" rel="bookmark" title="Golang Traps" itemprop="url">Golang Traps</a></h1>
+        
+        <h2>February 20, 2014</h2>
+      </div><!-- /.header-title-wrap -->
+    </header>
+    <div class="entry-content" itemprop="description">
+      <p>这段时间，在公司项目中使用了golang，感觉golang的确有他独到的地方，尤其是
 goroutine和channel使事情变的简单。可是作为一门新的语言golang仍然会有不少的问题
 ，例如没有检测文件是否存在的函数，没有拷贝文件的函数等等，诸如此类，除了这类问
 题以外还存在一些与直觉有所不同的问题，此篇博客将会持续记录在使用golang的过程中
@@ -194,27 +189,30 @@ goroutine和channel使事情变的简单。可是作为一门新的语言golang�
 <span class="p">}</span>
 </code></pre></div>
 
-  </div><!-- /.entry-content -->
-</article><!-- /.hentry -->
-
-
-<div class="pagination">
-  
-    Previous
-  
-  <ul class="inline-list">
-    <li>
-      
-        <span class="current-page">1</span>
-      
-    </li>
+      <footer class="entry-meta">
+        <span class="entry-tags"><a href="http://kosl90.github.io/tags/index.html#golang" title="Pages tagged golang" rel="tag" class="tag">golang</a><a href="http://kosl90.github.io/tags/index.html#go" title="Pages tagged go" rel="tag" class="tag">go</a></span>
+        <span><a href="http://kosl90.github.io/golang-traps" rel="bookmark" title="Golang Traps" itemprop="url">Golang Traps</a> was published on <span class="entry-date date published updated"><time datetime="2014-02-20T00:00:00+08:00" itemprop="datePublished">February 20, 2014</time></span></span>
+        (revised: <span class="entry-date date modified"><time datetime="2014-02-22" itemprop="dateModified">02/22/2014</time></span>)
+        <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="fn"><a href="http://kosl90.github.io/about" title="About Lee" itemprop="url">Lee</a></span></span>
+        <div class="social-share">
+          <ul class="socialcount socialcount-small inline-list" data-url="http://kosl90.github.io/golang-traps" data-share-text="Golang Traps">
+            <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://kosl90.github.io/golang-traps" title="Share on Facebook"><span class="count"><i class="icon-facebook-sign"></i> Like</span></a></li>
+            <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://kosl90.github.io/golang-traps" title="Share on Twitter"><span class="count"><i class="icon-twitter-sign"></i> Tweet</span></a></li>
+            <li class="googleplus"><a href="https://plus.google.com/share?url=http://kosl90.github.io/golang-traps" title="Share on Google Plus"><span class="count"><i class="icon-google-plus-sign"></i> +1</span></a></li>
+          </ul>
+        </div><!-- /.social-share -->
+      </footer>
+    </div><!-- /.entry-content -->
     
-  </ul>
-  
-    Next
-  
-
-</div>
+    
+    <div class="read-more">
+      
+      <div class="read-more-list">
+        
+      </div><!-- /.read-more-list -->
+      
+    </div><!-- /.read-more -->
+  </article>
 </div><!-- /#main -->
 
 <div class="footer-wrapper">
@@ -230,7 +228,7 @@ goroutine和channel使事情变的简单。可是作为一门新的语言golang�
 <script>window.jQuery || document.write('<script src="http://kosl90.github.io/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
 <script src="http://kosl90.github.io/assets/js/scripts.min.js"></script>
 
-          
+	        
 
 </body>
 </html>
