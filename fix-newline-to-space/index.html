@@ -269,6 +269,27 @@
 <script>window.jQuery || document.write('<script src="http://kosl90.github.io/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
 <script src="http://kosl90.github.io/assets/js/scripts.min.js"></script>
 
+
+<script>
+  (function(i=window,s=document,o='script',g='//www.',r='ga',a,m){
+   i['GoogleAnalyticsObject']=r;
+   i[r]=i[r]||function(){
+       (i[r].q=i[r].q||[]).push(arguments)
+   },
+  i[r].l=1*new Date();
+  a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];
+  a.async=1;
+  a.src=g;
+  m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', site.google_analytics.id, site.google_analytics.site);
+  ga('send', 'pageview');
+
+</script>
+
+
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
     var disqus_shortname = 'kosl90'; // required: replace example with your forum shortname
