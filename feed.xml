@@ -4,13 +4,111 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://kosl90.github.io/feed.xml" />
 <link rel="alternate" type="text/html" href="http://kosl90.github.io" />
-<updated>2014-02-21T23:23:47+08:00</updated>
+<updated>2014-02-23T16:42:48+08:00</updated>
 <id>http://kosl90.github.io/</id>
 <author>
   <name>Lee</name>
   <uri>http://kosl90.github.io/</uri>
   <email>kos1990l@gmail.com</email>
 </author>
+
+
+<entry>
+  <title type="html"><![CDATA[Fix Newline to Space]]></title>
+  <link>http://kosl90.github.io/fix-newline-to-space</link>
+  <id>http://kosl90.github.io/fix-newline-to-space</id>
+  <updated>2014-02-22T00:00:00-00:00</updated>
+  <published>2014-02-23T00:00:00+08:00</published>
+  
+  <author>
+    <name>Lee</name>
+    <uri>http://kosl90.github.io</uri>
+    <email>kos1990l@gmail.com</email>
+  </author>
+  <content type="html">&lt;p&gt;之前，&lt;a href=&quot;http://randomk.gitcafe.com/&quot;&gt;RandomK&lt;/a&gt;说我的blog有bug，其实在他说之前我就已经知道了，只是当时比较晚，所以没有修，今天周末将其解决之。&lt;/p&gt;
+
+&lt;h2&gt;原因&lt;/h2&gt;
+
+&lt;p&gt;我使用的是redcarpet作为markdown的转换器，jekyll将多行的段落转换成html之后在浏览器中显示会很奇怪，在原始的markdown中的某一行最后一个字与下一行的第一个字之间存在一个空格，作为使用单词的外国淫来说没什么问题，可是作为大天朝子民是无法忍受的。
+&lt;figure&gt;
+&lt;img data-echo=&quot;http://kosl90.github.io/images/fix-space/space.png&quot; alt=&quot;space&quot; title=&quot;space&quot;&gt;
+&lt;figcaption&gt;文字之间存在空格&lt;/figcaption&gt;
+&lt;/figure&gt;&lt;/p&gt;
+
+&lt;h2&gt;解决方案一 段落写为一行&lt;/h2&gt;
+
+&lt;p&gt;我只能说这种行为好痛苦。&lt;/p&gt;
+
+&lt;h2&gt;解决方案二 在markdown转换为html前处理一下&lt;/h2&gt;
+
+&lt;p&gt;由于无法忍受第一种解决方案，只能在markdown转换为html之前进行一些预处理了。在网上搜索一番后发现果然不止我一人遇到此问题，并且找到了一个&lt;a href=&quot;http://chenyufei.info/blog/2011-12-23/fix-chinese-newline-becomes-space-in-browser-problem/&quot;&gt;解决方案&lt;/a&gt;。不过该解决方案有一定的局限性，第一，没有处理汉英和英汉这两种情况，第二，没有处理摘要。&lt;/p&gt;
+
+&lt;p&gt;为了解决以上两个问题，必须做出一些更改。&lt;/p&gt;
+
+&lt;p&gt;首先，作为一个非octopress用户，果断得去github上将octopress的&lt;a href=&quot;https://github.com/imathis/octopress/blob/master/plugins/post_filters.rb&quot;&gt;post_filters plugins&lt;/a&gt;得到，然后，从&lt;a href=&quot;http://chenyufei.info/blog/2011-12-23/fix-chinese-newline-becomes-space-in-browser-problem/&quot;&gt;解决 Markdown 转 HTML 中文换行变空格的问题&lt;/a&gt;将代码拷贝并保存到存放plugins的目录。然后就可以开始修改了。&lt;/p&gt;
+
+&lt;p&gt;修改1:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;han&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;\p{Han}|[，。？；：‘’“”、！……（）]&amp;#39;&lt;/span&gt;
+  &lt;span class=&quot;vc&quot;&gt;@@hh&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/(&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;han&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;) *\n *(&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;han&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;)/m&lt;/span&gt;
+  &lt;span class=&quot;vc&quot;&gt;@@he&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/(&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;han&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;) *\n *(\p{Alpha})/m&lt;/span&gt;
+  &lt;span class=&quot;vc&quot;&gt;@@eh&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/(\p{Alpha}) *\n *(&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;han&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;)/m&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;join_chinese!&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;gsub!&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vc&quot;&gt;@@hh&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;\1\2&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;gsub!&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vc&quot;&gt;@@he&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;\1\2&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;gsub!&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;vc&quot;&gt;@@eh&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;\1\2&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;经过修改后，blog就能够正常显示了。
+&lt;figure class=&quot;half&quot;&gt;
+&lt;img data-echo=&quot;http://kosl90.github.io/images/fix-space/space.png&quot; alt=&quot;space&quot; title=&quot;space&quot;&gt;
+&lt;img data-echo=&quot;http://kosl90.github.io/images/fix-space/no-space.png&quot; alt=&quot;no-space&quot; title=&quot;no space&quot;&gt;
+    &lt;figcaption&gt;第一阶段成果&lt;/figcaption&gt;
+&lt;/figure&gt;&lt;/p&gt;
+
+&lt;p&gt;修改2:
+虽然blog中的问题解决了，但是摘要部分并没有的到解决。
+&lt;figure&gt;
+&lt;img data-echo=&quot;http://kosl90.github.io/images/fix-space/wrong-excerpt.png&quot; alt=&quot;wrong-excerpt&quot; title=&quot;wrong-excerpt&quot;&gt;
+    &lt;figcaption&gt;摘要中显示错误&lt;/figcaption&gt;
+&lt;/figure&gt;
+由于在pre_render中添加&lt;code&gt;post.excerpt.join_chinese!&lt;/code&gt;会导致jekyll创建html时失败，因此采用添加一个filter供Liquid使用，从而解决解决此问题。&lt;/p&gt;
+
+&lt;p&gt;将一下代码加入Jekyll模块中&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby language-ruby&quot; data-lang=&quot;ruby&quot;&gt;  &lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;TemplateJoinChineseFilter&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;join_chinese&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;join_chinese!&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;然后将&lt;code&gt;Liquid::Template.register_filter(Jekyll::TemplateJoinChineseFilter)&lt;/code&gt;添加到最后一行。最后，只需要在使用摘要的时候使用&lt;code&gt;{{ page.excerpt | join_chinese }}&lt;/code&gt;替代&lt;code&gt;{{ page.excerpt }}&lt;/code&gt;即可。
+&lt;figure class=&#39;half&#39;&gt;
+&lt;img data-echo=&quot;http://kosl90.github.io/images/fix-space/wrong-excerpt.png&quot; alt=&quot;wrong-excerpt&quot; title=&quot;wrong-excerpt&quot;&gt;
+&lt;img data-echo=&quot;http://kosl90.github.io/images/fix-space/excerpt.png&quot; alt=&quot;excerpt&quot; title=&quot;excerpt&quot;&gt;
+&lt;figcaption&gt;摘要中空格也不存在了&lt;/figcaption&gt;
+&lt;/figure&gt;&lt;/p&gt;
+
+&lt;h1&gt;The End&lt;/h1&gt;
+
+&lt;p&gt;问题基本得到了解决，不过还有几点需要注意：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;markdown中标题与正文之间需要一行空白行（我不习惯）。&lt;/li&gt;
+&lt;li&gt;标点符号和数字没有处理，因此有些地方是不适合换行然后通过插件解决的。&lt;/li&gt;
+&lt;li&gt;应该还存在这一些bug。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2&gt;Reference&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;http://chenyufei.info/blog/2011-12-23/fix-chinese-newline-becomes-space-in-browser-problem/&quot;&gt;解决 Markdown 转 HTML 中文换行变空格的问题&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/imathis/octopress/blob/master/plugins/post_filters.rb&quot;&gt;post_filter&lt;/a&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+
+  &lt;p&gt;&lt;a href=&quot;http://kosl90.github.io/fix-newline-to-space&quot;&gt;Fix Newline to Space&lt;/a&gt; was originally published by Lee at &lt;a href=&quot;http://kosl90.github.io&quot;&gt;kosl90's Blog&lt;/a&gt; on February 23, 2014.&lt;/p&gt;</content>
+</entry>
 
 
 <entry>
@@ -25,11 +123,7 @@
     <uri>http://kosl90.github.io</uri>
     <email>kos1990l@gmail.com</email>
   </author>
-  <content type="html">&lt;p&gt;这段时间，在公司项目中使用了golang，感觉golang的确有他独到的地方，尤其是
-goroutine和channel使事情变的简单。可是作为一门新的语言golang仍然会有不少的问题
-，例如没有检测文件是否存在的函数，没有拷贝文件的函数等等，诸如此类，除了这类问
-题以外还存在一些与直觉有所不同的问题，此篇博客将会持续记录在使用golang的过程中
-遇到的一些问题。&lt;/p&gt;
+  <content type="html">&lt;p&gt;这段时间，在公司项目中使用了golang，感觉golang的确有他独到的地方，尤其是goroutine和channel使事情变的简单。可是作为一门新的语言golang仍然会有不少的问题，例如没有检测文件是否存在的函数，没有拷贝文件的函数等等，诸如此类，除了这类问题以外还存在一些与直觉有所不同的问题，此篇博客将会持续记录在使用golang的过程中遇到的一些问题。&lt;/p&gt;
 
 &lt;h2&gt;没有检测文件是否存在的函数&lt;/h2&gt;
 
@@ -43,15 +137,11 @@ goroutine和channel使事情变的简单。可是作为一门新的语言golang�
 
 &lt;h2&gt;没有拷贝文件的函数&lt;/h2&gt;
 
-&lt;p&gt;关于这一点，在github上有一个&lt;a href=&quot;https://github.com/daaku/go.copyfile&quot;&gt;项目&lt;/a&gt;可以一
-定程度上的解决这个问题，不过这个项目还有待完善，而且我个人使用方法感觉很不习惯
-，还是习惯以设置flag参数的形式来使用。&lt;/p&gt;
+&lt;p&gt;关于这一点，在github上有一个&lt;a href=&quot;https://github.com/daaku/go.copyfile&quot;&gt;项目&lt;/a&gt;可以一定程度上的解决这个问题，不过这个项目还有待完善，而且我个人使用方法感觉很不习惯，还是习惯以设置flag参数的形式来使用。&lt;/p&gt;
 
 &lt;h2&gt;filepath.Walk&lt;/h2&gt;
 
-&lt;p&gt;这个问题是今天遇到的，当我天真的以为对一个不存在的路径进行Walk的时候，此函数什
-么也不会做，然后像其他函数一样返回错误给我的时候，可结果却是该函数仍然会调用回
-调函数。我之前还在纳闷第三个参数有什么用，好吧，今天发现你的文档的确是说了，
+&lt;p&gt;这个问题是今天遇到的，当我天真的以为对一个不存在的路径进行Walk的时候，此函数什么也不会做，然后像其他函数一样返回错误给我的时候，可结果却是该函数仍然会调用回调函数。我之前还在纳闷第三个参数有什么用，好吧，今天发现你的文档的确是说了，
 &lt;strong&gt;所有&lt;/strong&gt;错误都在回调函数中处理，这是我的错。&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;go&quot;&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;main&lt;/span&gt;

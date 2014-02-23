@@ -137,62 +137,26 @@
   
 <article class="hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
+    <div class="entry-meta"><span class="entry-date date published updated"><time datetime="2014-02-23T00:00:00+08:00" itemprop="datePublished"><a href="http://kosl90.github.io/fix-newline-to-space">February 23, 2014</a></time></span><span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="fn"><a href="http://kosl90.github.io/about" title="About Lee" itemprop="url">Lee</a></span></span></div><!-- /.entry-meta -->
+    
+      <h1 class="entry-title" itemprop="name"><a href="http://kosl90.github.io/fix-newline-to-space" rel="bookmark" title="Fix Newline to Space" itemprop="url">Fix Newline to Space</a></h1>
+    
+  </header>
+  <div class="entry-content" itemprop="description">
+    <p>之前，<a href="http://randomk.gitcafe.com/">RandomK</a>说我的blog有bug，其实在他说之前我就已经知道了，只是当时比较晚，所以没有修，今天周末将其解决之。</p>
+
+  </div><!-- /.entry-content -->
+</article><!-- /.hentry -->
+
+<article class="hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
     <div class="entry-meta"><span class="entry-date date published updated"><time datetime="2014-02-20T00:00:00+08:00" itemprop="datePublished"><a href="http://kosl90.github.io/golang-traps">February 20, 2014</a></time></span><span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="fn"><a href="http://kosl90.github.io/about" title="About Lee" itemprop="url">Lee</a></span></span></div><!-- /.entry-meta -->
     
       <h1 class="entry-title" itemprop="name"><a href="http://kosl90.github.io/golang-traps" rel="bookmark" title="Golang Traps" itemprop="url">Golang Traps</a></h1>
     
   </header>
   <div class="entry-content" itemprop="description">
-    <p>这段时间，在公司项目中使用了golang，感觉golang的确有他独到的地方，尤其是
-goroutine和channel使事情变的简单。可是作为一门新的语言golang仍然会有不少的问题
-，例如没有检测文件是否存在的函数，没有拷贝文件的函数等等，诸如此类，除了这类问
-题以外还存在一些与直觉有所不同的问题，此篇博客将会持续记录在使用golang的过程中
-遇到的一些问题。</p>
-
-<h2>没有检测文件是否存在的函数</h2>
-
-<p>这个问题是我无意中在某项目中看到解决方案时发现的，解决方案也比较简单。</p>
-
-<div class="highlight"><pre><code class="go"><span class="kd">func</span> <span class="nx">Exist</span><span class="p">(</span><span class="nx">path</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Stat</span><span class="p">(</span><span class="nx">path</span><span class="p">)</span>
-    <span class="k">return</span> <span class="nx">err</span> <span class="o">==</span> <span class="kc">nil</span> <span class="o">||</span> <span class="nx">os</span><span class="p">.</span><span class="nx">IsExist</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<h2>没有拷贝文件的函数</h2>
-
-<p>关于这一点，在github上有一个<a href="https://github.com/daaku/go.copyfile">项目</a>可以一
-定程度上的解决这个问题，不过这个项目还有待完善，而且我个人使用方法感觉很不习惯
-，还是习惯以设置flag参数的形式来使用。</p>
-
-<h2>filepath.Walk</h2>
-
-<p>这个问题是今天遇到的，当我天真的以为对一个不存在的路径进行Walk的时候，此函数什
-么也不会做，然后像其他函数一样返回错误给我的时候，可结果却是该函数仍然会调用回
-调函数。我之前还在纳闷第三个参数有什么用，好吧，今天发现你的文档的确是说了，
-<strong>所有</strong>错误都在回调函数中处理，这是我的错。</p>
-
-<div class="highlight"><pre><code class="go"><span class="kn">package</span> <span class="nx">main</span>
-<span class="kn">import</span> <span class="p">(</span>
-    <span class="s">&quot;fmt&quot;</span>
-    <span class="s">&quot;os&quot;</span>
-    <span class="s">&quot;path/filepath&quot;</span>
-<span class="p">)</span>
-
-<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">notExistedPath</span> <span class="o">:=</span> <span class="s">&quot;/notExistedPath&quot;</span>
-    <span class="nx">filepath</span><span class="p">.</span><span class="nx">Walk</span><span class="p">(</span>
-        <span class="nx">notExistedPath</span><span class="p">,</span>
-        <span class="kd">func</span><span class="p">(</span><span class="nx">path</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">info</span> <span class="nx">os</span><span class="p">.</span><span class="nx">FileInfo</span><span class="p">,</span> <span class="nx">e</span> <span class="kt">error</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
-            <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;invoked&quot;</span><span class="p">,</span>
-                <span class="s">&quot;\npath is:&quot;</span><span class="p">,</span> <span class="nx">path</span><span class="p">,</span>
-                <span class="s">&quot;\ninfo is:&quot;</span><span class="p">,</span> <span class="nx">info</span><span class="p">,</span>
-                <span class="s">&quot;\nerror is:&quot;</span><span class="p">,</span> <span class="nx">e</span><span class="p">)</span>
-            <span class="k">return</span> <span class="kc">nil</span>
-        <span class="p">},</span>
-    <span class="p">)</span>
-<span class="p">}</span>
-</code></pre></div>
+    <p>这段时间，在公司项目中使用了golang，感觉golang的确有他独到的地方，尤其是goroutine和channel使事情变的简单。可是作为一门新的语言golang仍然会有不少的问题，例如没有检测文件是否存在的函数，没有拷贝文件的函数等等，诸如此类，除了这类问题以外还存在一些与直觉有所不同的问题，此篇博客将会持续记录在使用golang的过程中遇到的一些问题。</p>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
@@ -215,6 +179,7 @@ goroutine和channel使事情变的简单。可是作为一门新的语言golang�
   
 
 </div>
+
 </div><!-- /#main -->
 
 <div class="footer-wrapper">
@@ -226,9 +191,12 @@ goroutine和channel使事情变的简单。可是作为一门新的语言golang�
   </footer>
 </div><!-- /.footer-wrapper -->
 
+<script src="http://kosl90.github.io/assets/js/vendor/echo.min.js"></script>
+<script>Echo.init({offset:'200',throttle: 250});</script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="http://kosl90.github.io/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
 <script src="http://kosl90.github.io/assets/js/scripts.min.js"></script>
+
 
           
 
