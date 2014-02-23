@@ -2,27 +2,27 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
 <title type="text">kosl90's Blog</title>
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
-<link rel="self" type="application/atom+xml" href="http://kosl90.github.io/feed.xml" />
-<link rel="alternate" type="text/html" href="http://kosl90.github.io" />
-<updated>2014-02-23T17:30:00+08:00</updated>
-<id>http://kosl90.github.io/</id>
+<link rel="self" type="application/atom+xml" href="/feed.xml" />
+<link rel="alternate" type="text/html" href="" />
+<updated>2014-02-23T18:33:11+08:00</updated>
+<id>/</id>
 <author>
   <name>Lee</name>
-  <uri>http://kosl90.github.io/</uri>
+  <uri>/</uri>
   <email>kos1990l@gmail.com</email>
 </author>
 
 
 <entry>
   <title type="html"><![CDATA[Fix Newline to Space]]></title>
-  <link>http://kosl90.github.io/fix-newline-to-space</link>
-  <id>http://kosl90.github.io/fix-newline-to-space</id>
+  <link>/fix-newline-to-space</link>
+  <id>/fix-newline-to-space</id>
   <updated>2014-02-22T00:00:00-00:00</updated>
   <published>2014-02-23T00:00:00+08:00</published>
   
   <author>
     <name>Lee</name>
-    <uri>http://kosl90.github.io</uri>
+    <uri></uri>
     <email>kos1990l@gmail.com</email>
   </author>
   <content type="html">&lt;p&gt;之前，&lt;a href=&quot;http://randomk.gitcafe.com/&quot;&gt;RandomK&lt;/a&gt;说我的blog有bug，其实在他说之前我就已经知道了，只是当时比较晚，所以没有修，今天周末将其解决之。&lt;/p&gt;
@@ -31,7 +31,9 @@
 
 &lt;p&gt;我使用的是redcarpet作为markdown的转换器，jekyll将多行的段落转换成html之后在浏览器中显示会很奇怪，在原始的markdown中的某一行最后一个字与下一行的第一个字之间存在一个空格，作为使用单词的外国淫来说没什么问题，可是作为大天朝子民是无法忍受的。
 &lt;figure&gt;
-&lt;img data-echo=&quot;http://kosl90.github.io/images/fix-space/space.png&quot; alt=&quot;space&quot; title=&quot;space&quot;&gt;
+&lt;a href=&quot;/images/fix-space/space.png&quot; class=&#39;fancybox&#39;&gt;
+&lt;img data-echo=&quot;/images/fix-space/space.png&quot; alt=&quot;space&quot; title=&quot;space&quot;&gt;
+&lt;/a&gt;
 &lt;figcaption&gt;文字之间存在空格&lt;/figcaption&gt;
 &lt;/figure&gt;&lt;/p&gt;
 
@@ -63,15 +65,21 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;经过修改后，blog就能够正常显示了。
 &lt;figure class=&quot;half&quot;&gt;
-&lt;img data-echo=&quot;http://kosl90.github.io/images/fix-space/space.png&quot; alt=&quot;space&quot; title=&quot;space&quot;&gt;
-&lt;img data-echo=&quot;http://kosl90.github.io/images/fix-space/no-space.png&quot; alt=&quot;no-space&quot; title=&quot;no space&quot;&gt;
+&lt;a href=&quot;/images/fix-space/space.png&quot; class=&#39;fancybox&#39;&gt;
+&lt;img data-echo=&quot;/images/fix-space/space.png&quot; alt=&quot;space&quot; title=&quot;space&quot;&gt;
+&lt;/a&gt;
+&lt;a href=&quot;/images/fix-space/no-space.png&quot; class=&#39;fancybox&#39;&gt;
+&lt;img data-echo=&quot;/images/fix-space/no-space.png&quot; alt=&quot;no-space&quot; title=&quot;no space&quot;&gt;
+&lt;/a&gt;
     &lt;figcaption&gt;第一阶段成果&lt;/figcaption&gt;
 &lt;/figure&gt;&lt;/p&gt;
 
 &lt;p&gt;修改2:
 虽然blog中的问题解决了，但是摘要部分并没有的到解决。
 &lt;figure&gt;
-&lt;img data-echo=&quot;http://kosl90.github.io/images/fix-space/wrong-excerpt.png&quot; alt=&quot;wrong-excerpt&quot; title=&quot;wrong-excerpt&quot;&gt;
+&lt;a href=&quot;/images/fix-space/wrong-excerpt.png&quot; class=&#39;fancybox&#39;&gt;
+&lt;img data-echo=&quot;/images/fix-space/wrong-excerpt.png&quot; alt=&quot;wrong-excerpt&quot; title=&quot;wrong-excerpt&quot;&gt;
+&lt;/a&gt;
     &lt;figcaption&gt;摘要中显示错误&lt;/figcaption&gt;
 &lt;/figure&gt;
 由于在pre_render中添加&lt;code&gt;post.excerpt.join_chinese!&lt;/code&gt;会导致jekyll创建html时失败，因此采用添加一个filter供Liquid使用，从而解决解决此问题。&lt;/p&gt;
@@ -85,8 +93,12 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;然后将&lt;code&gt;Liquid::Template.register_filter(Jekyll::TemplateJoinChineseFilter)&lt;/code&gt;添加到最后一行。最后，只需要在使用摘要的时候使用&lt;code&gt;{{ page.excerpt | join_chinese }}&lt;/code&gt;替代&lt;code&gt;{{ page.excerpt }}&lt;/code&gt;即可。
 &lt;figure class=&#39;half&#39;&gt;
-&lt;img data-echo=&quot;http://kosl90.github.io/images/fix-space/wrong-excerpt.png&quot; alt=&quot;wrong-excerpt&quot; title=&quot;wrong-excerpt&quot;&gt;
-&lt;img data-echo=&quot;http://kosl90.github.io/images/fix-space/excerpt.png&quot; alt=&quot;excerpt&quot; title=&quot;excerpt&quot;&gt;
+&lt;a href=&quot;/images/fix-space/wrong-excerpt.png&quot; class=&#39;fancybox&#39;&gt;
+&lt;img data-echo=&quot;/images/fix-space/wrong-excerpt.png&quot; alt=&quot;wrong-excerpt&quot; title=&quot;wrong-excerpt&quot;&gt;
+&lt;/a&gt;
+&lt;a href=&quot;/images/fix-space/excerpt.png&quot; class=&#39;fancybox&#39;&gt;
+&lt;img data-echo=&quot;/images/fix-space/excerpt.png&quot; alt=&quot;excerpt&quot; title=&quot;excerpt&quot;&gt;
+&lt;/a&gt;
 &lt;figcaption&gt;摘要中空格也不存在了&lt;/figcaption&gt;
 &lt;/figure&gt;&lt;/p&gt;
 
@@ -107,20 +119,20 @@
 &lt;li&gt;&lt;a href=&quot;https://github.com/imathis/octopress/blob/master/plugins/post_filters.rb&quot;&gt;post_filter&lt;/a&gt;。&lt;/li&gt;
 &lt;/ol&gt;
 
-  &lt;p&gt;&lt;a href=&quot;http://kosl90.github.io/fix-newline-to-space&quot;&gt;Fix Newline to Space&lt;/a&gt; was originally published by Lee at &lt;a href=&quot;http://kosl90.github.io&quot;&gt;kosl90's Blog&lt;/a&gt; on February 23, 2014.&lt;/p&gt;</content>
+  &lt;p&gt;&lt;a href=&quot;/fix-newline-to-space&quot;&gt;Fix Newline to Space&lt;/a&gt; was originally published by Lee at &lt;a href=&quot;&quot;&gt;kosl90's Blog&lt;/a&gt; on February 23, 2014.&lt;/p&gt;</content>
 </entry>
 
 
 <entry>
   <title type="html"><![CDATA[Golang Traps]]></title>
-  <link>http://kosl90.github.io/golang-traps</link>
-  <id>http://kosl90.github.io/golang-traps</id>
+  <link>/golang-traps</link>
+  <id>/golang-traps</id>
   <updated>2014-02-22T00:00:00-00:00</updated>
   <published>2014-02-20T00:00:00+08:00</published>
   
   <author>
     <name>Lee</name>
-    <uri>http://kosl90.github.io</uri>
+    <uri></uri>
     <email>kos1990l@gmail.com</email>
   </author>
   <content type="html">&lt;p&gt;这段时间，在公司项目中使用了golang，感觉golang的确有他独到的地方，尤其是goroutine和channel使事情变的简单。可是作为一门新的语言golang仍然会有不少的问题，例如没有检测文件是否存在的函数，没有拷贝文件的函数等等，诸如此类，除了这类问题以外还存在一些与直觉有所不同的问题，此篇博客将会持续记录在使用golang的过程中遇到的一些问题。&lt;/p&gt;
@@ -166,7 +178,7 @@
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-  &lt;p&gt;&lt;a href=&quot;http://kosl90.github.io/golang-traps&quot;&gt;Golang Traps&lt;/a&gt; was originally published by Lee at &lt;a href=&quot;http://kosl90.github.io&quot;&gt;kosl90's Blog&lt;/a&gt; on February 20, 2014.&lt;/p&gt;</content>
+  &lt;p&gt;&lt;a href=&quot;/golang-traps&quot;&gt;Golang Traps&lt;/a&gt; was originally published by Lee at &lt;a href=&quot;&quot;&gt;kosl90's Blog&lt;/a&gt; on February 20, 2014.&lt;/p&gt;</content>
 </entry>
 
 </feed>
