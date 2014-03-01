@@ -188,6 +188,76 @@
 <span class="p">}</span>
 </code></pre></div>
 
+<h2>flag.Bool</h2>
+
+<p>在吐槽这个之前，先简单的介绍一下命令行参数吧。命令行参数大致分为option（选项）/argument（参数）/command（命令）三种类型。</p>
+
+<p>option的作用是改变程序的行为，通常具有长和短两种形式，根据选项行为可分为switches(开关)和flags（标志）两类。switches通常用于开启或关闭某项功能，不接受任何参数，而flags则通常会接受参数。</p>
+
+<p>argument通常是命令行中除去option的部分，被操作的对象，可能是文件或者目录等等。</p>
+
+<p>与option和argument不同，command具有更明确的意义，用来管理一些列复杂的行为。使一些程序比较复杂，例如git，更易于使用和管理。由于command的出现导致option分为了global option和command option。</p>
+
+<p>关于命令行更详细的介绍《python标准库》中关于命令行模块和《Build Awesome Command-Line Applications in Ruby 2》都是不错的资料。</p>
+
+<p>言归正传，go语言中flag.Bool是典型的开关型选项。在使用前，当然要写一个小程序来学习一下：</p>
+
+<div class="highlight"><pre><code class="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;flag&quot;</span>
+    <span class="s">&quot;fmt&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">b</span> <span class="kt">bool</span>
+    <span class="nx">flag</span><span class="p">.</span><span class="nx">BoolVar</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">b</span><span class="p">,</span> <span class="s">&quot;b&quot;</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="s">&quot;description for b&quot;</span><span class="p">)</span>
+    <span class="nx">flag</span><span class="p">.</span><span class="nx">Parse</span><span class="p">()</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>测试：</p>
+
+<div class="highlight"><pre><code class="bash">% go run test.go
+<span class="nb">false</span>
+% go run test.go -b
+<span class="nb">true</span>
+</code></pre></div>
+
+<p>It&#39;s simple and everything looks fine. 我再次天真的以为没问题了。接下来试一下另外一个程序吧。</p>
+
+<div class="highlight"><pre><code class="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;flag&quot;</span>
+    <span class="s">&quot;fmt&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">b</span> <span class="kt">bool</span>
+    <span class="nx">flag</span><span class="p">.</span><span class="nx">BoolVar</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">b</span><span class="p">,</span> <span class="s">&quot;b&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="s">&quot;description for b&quot;</span><span class="p">)</span>
+    <span class="nx">flag</span><span class="p">.</span><span class="nx">Parse</span><span class="p">()</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>测试：</p>
+
+<div class="highlight"><pre><code class="bash">% go run test.go
+<span class="nb">true</span>
+% go run test.go -b
+<span class="nb">true</span>
+</code></pre></div>
+
+<p>WTF!!!您这是闹哪样啊，欺负新来的是吧，反人类是吧，你还可以再叼一点大丈夫的。好吧，我承认我又没读文档，因为在文档上找到了这样一句话：</p>
+
+<blockquote>
+<p>You must use the -flag=false form to turn off a boolean flag.</p>
+</blockquote>
+
+<p>所以说大牛的世界你不懂，你所需要做的就是好好读文档，如果有的话，然后吐槽吧。</p>
+
       <footer class="entry-meta">
         <span class="entry-tags"><a href="http://kosl90.github.io/tags/index.html#golang" title="Pages tagged golang" rel="tag" class="tag">golang</a><a href="http://kosl90.github.io/tags/index.html#go" title="Pages tagged go" rel="tag" class="tag">go</a></span>
         <span><a href="http://kosl90.github.io/golang-traps" rel="bookmark" title="Golang Traps" itemprop="url">Golang Traps</a> was published on <span class="entry-date date published updated"><time datetime="2014-02-20T00:00:00+08:00" itemprop="datePublished">February 20, 2014</time></span></span>
