@@ -154,8 +154,7 @@
 <div class="highlight"><pre><code class="go"><span class="kd">func</span> <span class="nx">Exist</span><span class="p">(</span><span class="nx">path</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Stat</span><span class="p">(</span><span class="nx">path</span><span class="p">)</span>
     <span class="k">return</span> <span class="nx">err</span> <span class="o">==</span> <span class="kc">nil</span> <span class="o">||</span> <span class="nx">os</span><span class="p">.</span><span class="nx">IsExist</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre></div>
+<span class="p">}</span></code></pre></div>
 
 <h2>没有拷贝文件的函数</h2>
 
@@ -185,8 +184,7 @@
             <span class="k">return</span> <span class="kc">nil</span>
         <span class="p">},</span>
     <span class="p">)</span>
-<span class="p">}</span>
-</code></pre></div>
+<span class="p">}</span></code></pre></div>
 
 <h2>flag.Bool</h2>
 
@@ -214,16 +212,14 @@
     <span class="nx">flag</span><span class="p">.</span><span class="nx">BoolVar</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">b</span><span class="p">,</span> <span class="s">&quot;b&quot;</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="s">&quot;description for b&quot;</span><span class="p">)</span>
     <span class="nx">flag</span><span class="p">.</span><span class="nx">Parse</span><span class="p">()</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre></div>
+<span class="p">}</span></code></pre></div>
 
 <p>测试：</p>
 
 <div class="highlight"><pre><code class="bash">% go run test.go
 <span class="nb">false</span>
 % go run test.go -b
-<span class="nb">true</span>
-</code></pre></div>
+<span class="nb">true</span></code></pre></div>
 
 <p>It&#39;s simple and everything looks fine. 我再次天真的以为没问题了。接下来试一下另外一个程序吧。</p>
 
@@ -239,16 +235,14 @@
     <span class="nx">flag</span><span class="p">.</span><span class="nx">BoolVar</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">b</span><span class="p">,</span> <span class="s">&quot;b&quot;</span><span class="p">,</span> <span class="kc">true</span><span class="p">,</span> <span class="s">&quot;description for b&quot;</span><span class="p">)</span>
     <span class="nx">flag</span><span class="p">.</span><span class="nx">Parse</span><span class="p">()</span>
     <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre></div>
+<span class="p">}</span></code></pre></div>
 
 <p>测试：</p>
 
 <div class="highlight"><pre><code class="bash">% go run test.go
 <span class="nb">true</span>
 % go run test.go -b
-<span class="nb">true</span>
-</code></pre></div>
+<span class="nb">true</span></code></pre></div>
 
 <p>WTF!!!您这是闹哪样啊，欺负新来的是吧，反人类是吧，你还可以再叼一点大丈夫的。好吧，我承认我又没读文档，因为在文档上找到了这样一句话：</p>
 
@@ -257,6 +251,54 @@
 </blockquote>
 
 <p>所以说大牛的世界你不懂，你所需要做的就是好好读文档，如果有的话，然后吐槽吧。</p>
+
+<h2>url前段时间在处理背景图片的时候遇到一个问题，那就是url中空格的问题，空格无法直接使用，需要转换为<code>%20</code>，而在go语言中正好有一个url的包，不过url包略有小坑。在url包中有一个叫<code>url.QueryEscape</code>的全局函数，咋一看这似乎就是所需的函数。</h2>
+
+<div class="highlight"><pre><code class="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;fmt&quot;</span>
+    <span class="s">&quot;net/url&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">url</span><span class="p">.</span><span class="nx">QueryEscape</span><span class="p">(</span><span class="s">&quot;a b&quot;</span><span class="p">))</span>
+<span class="p">}</span></code></pre></div>
+
+<p>得到的结果是：</p>
+
+<div class="highlight"><pre><code class="bash">a+b</code></pre></div>
+
+<p>这个必须不是正确的结果的。那么在go中到底有没有需要的函数呢？在网上查了老半天，stackoverflow上也有类似的问题，不过却并没有的到解答。处于无奈，只能区看源代码了，还好是开源的。在go的url包的源代码中发现却是存在将空格转换成<code>%20</code>的代码段，仔细看看了，发现String()函数就是寻找的函数。</p>
+
+<div class="highlight"><pre><code class="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&quot;fmt&quot;</span>
+    <span class="s">&quot;net/url&quot;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">url</span><span class="p">.</span><span class="nx">Parse</span><span class="p">(</span><span class="s">&quot;a b&quot;</span><span class="p">))</span>
+<span class="p">}</span></code></pre></div>
+
+<p>输出结果为：</p>
+
+<div class="highlight"><pre><code class="bash">a%20b &lt;nil&gt;</code></pre></div>
+
+<p>也怪自己知识浅薄，不懂灵活运用，虽然知道在空格会转换成%20但是，并没有想到<code>%20</code>
+才是url中的合法字符，对文档中对String函数的描述并没有在以，虽然很无奈，这么不起眼的函数，也并没有想到会来处理编码问题（percent-encoding）。</p>
+
+<p>小结一下：
+<pre>
+|javascript        |golang         |
+|------------------|---------------|
+|encodeURI         |URL.String     |
+|escape            |url.QueryEscape|
+|encodeURIComponent|none           |
+</pre></p>
+
+<p>也许encodeURIComponent可以通过其他方法组合实现，但是去并没有提供一个单独的函数来。</p>
 
       <footer class="entry-meta">
         <span class="entry-tags"><a href="http://kosl90.github.io/tags/index.html#golang" title="Pages tagged golang" rel="tag" class="tag">golang</a><a href="http://kosl90.github.io/tags/index.html#go" title="Pages tagged go" rel="tag" class="tag">go</a></span>
@@ -282,11 +324,16 @@
           <a href="http://kosl90.github.io" class="read-more-btn">Read More</a>
         </div><!-- /.read-more-header -->
         <div class="read-more-content">
-          <h3><a href="http://kosl90.github.io/fix-newline-to-space" title="Fix Newline to Space">Fix Newline to Space</a></h3>
-          <p>jekyll converts newline to space, it's not good for chinese. <a href="http://kosl90.github.io/fix-newline-to-space">Continue reading</a></p>
+          <h3><a href="http://kosl90.github.io/bit-getter-and-setter" title="Bit Getter and Setter">Bit Getter and Setter</a></h3>
+          <p>a simple bit getter and setter <a href="http://kosl90.github.io/bit-getter-and-setter">Continue reading</a></p>
         </div><!-- /.read-more-content -->
       
       <div class="read-more-list">
+        
+          <div class="list-item">
+            <h4><a href="http://kosl90.github.io/fix-newline-to-space" title="Fix Newline to Space">Fix Newline to Space</a></h4>
+            <span>Published on February 23, 2014</span>
+          </div><!-- /.list-item -->
         
       </div><!-- /.read-more-list -->
       

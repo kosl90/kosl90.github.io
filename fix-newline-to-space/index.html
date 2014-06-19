@@ -170,7 +170,7 @@
 <p>首先，作为一个非octopress用户，果断得去github上将octopress的<a href="https://github.com/imathis/octopress/blob/master/plugins/post_filters.rb">post_filters plugins</a>得到，然后，从<a href="http://chenyufei.info/blog/2011-12-23/fix-chinese-newline-becomes-space-in-browser-problem/">解决 Markdown 转 HTML 中文换行变空格的问题</a>将代码拷贝并保存到存放plugins的目录。然后就可以开始修改了。</p>
 
 <p>修改1:</p>
-<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">String</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">String</span>
   <span class="n">han</span> <span class="o">=</span> <span class="s1">&#39;\p{Han}|[，。？；：‘’“”、！……（）]&#39;</span>
   <span class="vc">@@hh</span> <span class="o">=</span> <span class="sr">/(</span><span class="si">#{</span><span class="n">han</span><span class="si">}</span><span class="sr">) *\n *(</span><span class="si">#{</span><span class="n">han</span><span class="si">}</span><span class="sr">)/m</span>
   <span class="vc">@@he</span> <span class="o">=</span> <span class="sr">/(</span><span class="si">#{</span><span class="n">han</span><span class="si">}</span><span class="sr">) *\n *(\p{Alpha})/m</span>
@@ -205,7 +205,7 @@
 由于在pre_render中添加<code>post.excerpt.join_chinese!</code>会导致jekyll创建html时失败，因此采用添加一个filter供Liquid使用，从而解决解决此问题。</p>
 
 <p>将一下代码加入Jekyll模块中</p>
-<div class="highlight"><pre><code class="ruby language-ruby" data-lang="ruby">  <span class="k">module</span> <span class="nn">TemplateJoinChineseFilter</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby">  <span class="k">module</span> <span class="nn">TemplateJoinChineseFilter</span>
     <span class="k">def</span> <span class="nf">join_chinese</span><span class="p">(</span><span class="n">input</span><span class="p">)</span>
       <span class="n">input</span><span class="o">.</span><span class="n">join_chinese!</span>
     <span class="k">end</span>
@@ -263,11 +263,16 @@
           <a href="http://kosl90.github.io/golang-traps" class="read-more-btn">Read More</a>
         </div><!-- /.read-more-header -->
         <div class="read-more-content">
-          <h3><a href="http://kosl90.github.io/golang-traps" title="Golang Traps">Golang Traps</a></h3>
-          <p>record golang's traps <a href="http://kosl90.github.io/golang-traps">Continue reading</a></p>
+          <h3><a href="http://kosl90.github.io/bit-getter-and-setter" title="Bit Getter and Setter">Bit Getter and Setter</a></h3>
+          <p>a simple bit getter and setter <a href="http://kosl90.github.io/bit-getter-and-setter">Continue reading</a></p>
         </div><!-- /.read-more-content -->
       
       <div class="read-more-list">
+        
+          <div class="list-item">
+            <h4><a href="http://kosl90.github.io/golang-traps" title="Golang Traps">Golang Traps</a></h4>
+            <span>Published on February 20, 2014</span>
+          </div><!-- /.list-item -->
         
       </div><!-- /.read-more-list -->
       
