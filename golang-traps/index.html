@@ -42,7 +42,7 @@
 <!-- For all browsers -->
 <link rel="stylesheet" href="http://kosl90.github.io/assets/css/main.min.css">
 <!-- Webfonts -->
-<link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
+<!-- <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css"> -->
 
 <meta http-equiv="cleartype" content="on">
 
@@ -252,7 +252,9 @@
 
 <p>所以说大牛的世界你不懂，你所需要做的就是好好读文档，如果有的话，然后吐槽吧。</p>
 
-<h2>url前段时间在处理背景图片的时候遇到一个问题，那就是url中空格的问题，空格无法直接使用，需要转换为<code>%20</code>，而在go语言中正好有一个url的包，不过url包略有小坑。在url包中有一个叫<code>url.QueryEscape</code>的全局函数，咋一看这似乎就是所需的函数。</h2>
+<h2>url</h2>
+
+<p>前段时间在处理背景图片的时候遇到一个问题，那就是url中空格的问题，空格无法直接使用，需要转换为<code>%20</code>，而在go语言中正好有一个url的包，不过url包略有小坑。在url包中有一个叫<code>url.QueryEscape</code>的全局函数，咋一看这似乎就是所需的函数。</p>
 
 <div class="highlight"><pre><code class="go"><span class="kn">package</span> <span class="nx">main</span>
 
@@ -299,6 +301,49 @@
 </pre></p>
 
 <p>也许encodeURIComponent可以通过其他方法组合实现，但是去并没有提供一个单独的函数来。</p>
+
+<h2>unsetenv</h2>
+
+<p>公司同事在写网络代理相关的代码，在设置系统代理时会设值环境变量，在设置和清空环境变量方面golang还是很方便的，只需要使用<code>os.Setenv</code>即可，可是如果需要删除一个环境变量时该怎么办呢？经过我的探索，sorry，在golang中目前并没有unsetenv函数，不过似乎已经有准备将unsetenv添加到<code>os</code>包中。那么现在要使用unsetenv该怎么办呢？于是同事写了一个UnsetEnv函数：</p>
+
+<div class="highlight"><pre><code class="go"><span class="kd">func</span> <span class="nx">UnsetEnv</span><span class="p">(</span><span class="nx">envName</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">envs</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Environ</span><span class="p">()</span>
+    <span class="nx">newEnvsData</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">)</span>
+    <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">e</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">envs</span> <span class="p">{</span>
+        <span class="nx">a</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nx">SplitN</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="s">&quot;=&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="kd">var</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">value</span> <span class="kt">string</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="p">{</span>
+            <span class="nx">name</span> <span class="p">=</span> <span class="nx">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="nx">value</span> <span class="p">=</span> <span class="nx">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">name</span> <span class="p">=</span> <span class="nx">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="nx">value</span> <span class="p">=</span> <span class="s">&quot;&quot;</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="nx">name</span> <span class="o">!=</span> <span class="nx">envName</span> <span class="p">{</span>
+            <span class="nx">newEnvsData</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="p">=</span> <span class="nx">value</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="nx">os</span><span class="p">.</span><span class="nx">Clearenv</span><span class="p">()</span>
+    <span class="k">for</span> <span class="nx">e</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">newEnvsData</span> <span class="p">{</span>
+        <span class="nx">err</span> <span class="p">=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Setenv</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+            <span class="k">return</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span>
+<span class="p">}</span></code></pre></div>
+
+<p>这个函数在某些程序中确实可以正确的运行，可是在测试过程中我们发现这个函数对通过C绑定的gio函数调用的程序并没有生效，于是就想到使用C中的<code>unsetenv</code>函数，便有了以下的函数：</p>
+
+<div class="highlight"><pre><code class="go"><span class="kd">func</span> <span class="nx">UnsetEnv</span><span class="p">(</span><span class="nx">_name</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">name</span> <span class="o">:=</span> <span class="nx">C</span><span class="p">.</span><span class="nx">CString</span><span class="p">(</span><span class="nx">_name</span><span class="p">)</span>
+    <span class="k">defer</span> <span class="nx">C</span><span class="p">.</span><span class="nx">free</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span>
+    <span class="nx">C</span><span class="p">.</span><span class="nx">unsetenv</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span>
+<span class="p">}</span></code></pre></div>
+
+<p>确实C绑定的函数调用的程序生效了，可是通过golang调用的程序却不生效了==，最后只有将两个函数柔和在一起才能生效。</p>
+
+<p>我们并没有深入挖掘这个问题，也并不是非常确定是不是我们使用的姿势不对，这里仅供参考。</p>
 
       <footer class="entry-meta">
         <span class="entry-tags"><a href="http://kosl90.github.io/tags/index.html#golang" title="Pages tagged golang" rel="tag" class="tag">golang</a><a href="http://kosl90.github.io/tags/index.html#go" title="Pages tagged go" rel="tag" class="tag">go</a></span>
@@ -352,7 +397,7 @@
 
 <script src="http://kosl90.github.io/assets/js/vendor/echo.min.js"></script>
 <script>Echo.init({offset:'200',throttle: 250});</script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
 <script>window.jQuery || document.write('<script src="http://kosl90.github.io/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
 <script src="http://kosl90.github.io/assets/js/scripts.min.js"></script>
 <script src="http://kosl90.github.io/assets/js/plugins/jquery.fancybox.pack.js"></script>
