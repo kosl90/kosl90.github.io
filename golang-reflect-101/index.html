@@ -38,11 +38,10 @@
 <meta name="MobileOptimized" content="320">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 <!-- For all browsers -->
 <link rel="stylesheet" href="http://kosl90.github.io/assets/css/main.min.css">
 <!-- Webfonts -->
-<!-- <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css"> -->
+<link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
 
 <meta http-equiv="cleartype" content="on">
 
@@ -71,10 +70,10 @@
 
 </head>
 
-<body id="post" class="feature" itemscope itemtype="http://schema.org/WebPage">
+<body id="post" class="feature">
 
 <!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
-<nav id="dl-menu" class="dl-menuwrapper" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+<nav id="dl-menu" class="dl-menuwrapper" role="navigation">
 	<button class="dl-trigger">Open Menu</button>
 	<ul class="dl-menu">
 		<li><a href="http://kosl90.github.io">Home</a></li>
@@ -110,7 +109,7 @@
 		<li>
 			<a href="#">Posts</a>
 			<ul class="dl-submenu">
-				<li><a href="http://kosl90.github.io/archive/">All Posts</a></li>
+				<li><a href="http://kosl90.github.io/posts/">All Posts</a></li>
 				<li><a href="http://kosl90.github.io/tags/">All Tags</a></li>
 			</ul>
 		</li>
@@ -118,33 +117,36 @@
                     <a href="#">Links</a>
                     <ul class="dl-submenu">
                         <li><a href="http://randomk.gitcafe.com">RandomK</a></li>
+                    
+                        <li><a href="http://blog.csdn.net/kosl90">Old Blog</a></li>
                     </ul>
                 </li>
                 <li><a href="http://kosl90.github.io/feed.xml">Feed</a></li>
-                <li><a href="http://blog.csdn.net/kosl90">Old Blog</a></li>
         </ul><!-- /.dl-menu -->
 </nav><!-- /.dl-menuwrapper -->
 
 
 
 <div class="entry-header">
-  <div class="entry-image"><img src="http://kosl90.github.io/images/abstract-3.jpg" alt="Golang Reflect 101" itemprop="image">
-    <div class="image-credit">Image source: <a href="http://www.dargadgetz.com/ios-7-abstract-wallpaper-pack-for-iphone-5-and-ipod-touch-retina/">dargadgetz</a></div><!-- /.image-credit -->
+  <div class="image-credit">Image source: <a href="http://www.dargadgetz.com/ios-7-abstract-wallpaper-pack-for-iphone-5-and-ipod-touch-retina/">dargadgetz</a></div><!-- /.image-credit -->
+  <div class="entry-image">
+    <img src="http://kosl90.github.io/images/abstract-3.jpg" alt="Golang Reflect 101">
   </div><!-- /.entry-image -->
 </div><!-- /.entry-header -->
 
 
-<div id="main" role="main" itemprop="mainContentOfPage" itemscope itemtype="http://schema.org/Blog">
-  <article class="hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+<div id="main" role="main">
+  <article class="hentry">
     <header class="header-title">
       <div class="header-title-wrap">
         
-          <h1 class="entry-title" itemprop="name"><a href="http://kosl90.github.io/golang-reflect-101" rel="bookmark" title="Golang Reflect 101" itemprop="url">Golang Reflect 101</a></h1>
+          <h1 class="entry-title"><a href="http://kosl90.github.io/golang-reflect-101" rel="bookmark" title="Golang Reflect 101">Golang Reflect 101</a></h1>
         
         <h2>June 20, 2014</h2>
+        
       </div><!-- /.header-title-wrap -->
     </header>
-    <div class="entry-content" itemprop="description">
+    <div class="entry-content">
       <p>元编程是一个很有意思东西，正好golang中包含了一个reflect包提供反射功能，上周末看了看reflect包，在此记录一下学习体会。</p>
 
 <h2>元编程</h2>
@@ -164,7 +166,7 @@
 
 <p>在golang中，提供了一个<code>reflect</code>包，这个包主要包含了两个主要类型<code>Type</code>和<code>Value</code>，并且在<code>reflect</code>包中还提供了两个非常方便的函数<code>TypeOf</code>和<code>ValueOf</code>来分别获得这两种类型。下面来看一段示例代码：</p>
 
-<div class="highlight"><pre><code class="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -271,7 +273,7 @@
 
 <p>如果运行这段代码会得到一下输出：</p>
 
-<div class="highlight"><pre><code class="bash">Type: *main.Struct
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">Type: *main.Struct
 Value: &lt;*main.Struct Value&gt;
 Kind: ptr
 struct field 0: Pub, string, embeded?: <span class="nb">false</span>, tag: 
@@ -285,9 +287,9 @@ call Struct.Sum: <span class="o">[</span>&lt;int Value&gt;<span class="o">]</spa
 call Struct.Name: <span class="o">[</span>David Beckham<span class="o">]</span> &lt;nil&gt;
 call Struct.sum: <span class="o">[]</span> <span class="s2">&quot;sum&quot;</span>: unexported field cannot be called
 call Struct.s: <span class="o">[]</span> <span class="s2">&quot;s&quot;</span>: is not existed <span class="k">for</span> *main.Struct
-<span class="k">function </span>argument 0: int
-<span class="k">function </span>argument 1: int
-<span class="k">function return </span>value 0: int
+<span class="k">function</span> argument 0: int
+<span class="k">function</span> argument 1: int
+<span class="k">function</span> <span class="k">return</span> value 0: int
 Call sum<span class="o">(</span>1, 3<span class="o">)</span> <span class="k">function</span>: 4</code></pre></div>
 
 <h2>代码分析</h2>
@@ -316,7 +318,7 @@ Call sum<span class="o">(</span>1, 3<span class="o">)</span> <span class="k">fun
 
 <p>下面是来自<code>reflect</code>包文档中的一个例子，更详细的展示了<code>struct tag</code>的用法：</p>
 
-<div class="highlight"><pre><code class="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -375,22 +377,20 @@ Call sum<span class="o">(</span>1, 3<span class="o">)</span> <span class="k">fun
 </ol>
 
       <footer class="entry-meta">
-        <span class="entry-tags"><a href="http://kosl90.github.io/tags/index.html#golang" title="Pages tagged golang" rel="tag" class="tag">golang</a><a href="http://kosl90.github.io/tags/index.html#go" title="Pages tagged go" rel="tag" class="tag">go</a></span>
-        <span><a href="http://kosl90.github.io/golang-reflect-101" rel="bookmark" title="Golang Reflect 101" itemprop="url">Golang Reflect 101</a> was published on <span class="entry-date date published updated"><time datetime="2014-06-20T00:00:00+08:00" itemprop="datePublished">June 20, 2014</time></span></span>
-        (revised: <span class="entry-date date modified"><time datetime="2014-02-22" itemprop="dateModified">02/22/2014</time></span>)
-        <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="fn"><a href="http://kosl90.github.io/about" title="About Lee" itemprop="url">Lee</a></span></span>
+        <span class="entry-tags"><a href="http://kosl90.github.io/tags/#golang" title="Pages tagged golang" class="tag">golang</a><a href="http://kosl90.github.io/tags/#go" title="Pages tagged go" class="tag">go</a></span>
+        <span><a href="http://kosl90.github.io/golang-reflect-101" rel="bookmark" title="Golang Reflect 101">Golang Reflect 101</a> was published on <span class="entry-date date published updated"><time datetime="2014-06-20T00:00:00+08:00">June 20, 2014</time></span></span>
+        (revised: <span class="entry-date date modified"><time datetime="2014-02-22">02/22/2014</time></span>)
+        <span class="author vcard"><span class="fn"><a href="http://kosl90.github.io/about/" title="About Lee">Lee</a></span></span>
         <div class="social-share">
-          <ul class="socialcount socialcount-small inline-list" data-url="http://kosl90.github.io/golang-reflect-101" data-share-text="Golang Reflect 101">
-            <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://kosl90.github.io/golang-reflect-101" title="Share on Facebook"><span class="count"><i class="icon-facebook-sign"></i> Like</span></a></li>
-            <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://kosl90.github.io/golang-reflect-101" title="Share on Twitter"><span class="count"><i class="icon-twitter-sign"></i> Tweet</span></a></li>
-            <li class="googleplus"><a href="https://plus.google.com/share?url=http://kosl90.github.io/golang-reflect-101" title="Share on Google Plus"><span class="count"><i class="icon-google-plus-sign"></i> +1</span></a></li>
+          <ul class="socialcount socialcount-small inline-list">
+            <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://kosl90.github.io/golang-reflect-101" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
+            <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://kosl90.github.io/golang-reflect-101" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
+            <li class="googleplus"><a href="https://plus.google.com/share?url=http://kosl90.github.io/golang-reflect-101" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
           </ul>
         </div><!-- /.social-share -->
       </footer>
     </div><!-- /.entry-content -->
-    <section id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </section><!-- /#disqus_thread -->
+    <section id="disqus_thread"></section><!-- /#disqus_thread -->
     
     <div class="read-more">
       
@@ -422,10 +422,7 @@ Call sum<span class="o">(</span>1, 3<span class="o">)</span> <span class="k">fun
 
 <div class="footer-wrapper">
   <footer role="contentinfo">
-    <span>&copy; 2014 Lee. Powered by <a
-        class='footer_link' href="http://jekyllrb.com">Jekyll</a> using the <a
-        class='footer_link' href="http://mademistakes.com/">HPSTR Theme</a>.</span>
-
+    <span>&copy; 2014 Lee. Powered by <a href="http://jekyllrb.com">Jekyll</a> using the <a href="http://mademistakes.com/hpstr/">HPSTR Theme</a>.</span>
   </footer>
 </div><!-- /.footer-wrapper -->
 

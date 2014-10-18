@@ -38,11 +38,10 @@
 <meta name="MobileOptimized" content="320">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 <!-- For all browsers -->
 <link rel="stylesheet" href="http://kosl90.github.io/assets/css/main.min.css">
 <!-- Webfonts -->
-<!-- <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css"> -->
+<link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
 
 <meta http-equiv="cleartype" content="on">
 
@@ -71,10 +70,10 @@
 
 </head>
 
-<body id="post" class="feature" itemscope itemtype="http://schema.org/WebPage">
+<body id="post" class="feature">
 
 <!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
-<nav id="dl-menu" class="dl-menuwrapper" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+<nav id="dl-menu" class="dl-menuwrapper" role="navigation">
 	<button class="dl-trigger">Open Menu</button>
 	<ul class="dl-menu">
 		<li><a href="http://kosl90.github.io">Home</a></li>
@@ -110,7 +109,7 @@
 		<li>
 			<a href="#">Posts</a>
 			<ul class="dl-submenu">
-				<li><a href="http://kosl90.github.io/archive/">All Posts</a></li>
+				<li><a href="http://kosl90.github.io/posts/">All Posts</a></li>
 				<li><a href="http://kosl90.github.io/tags/">All Tags</a></li>
 			</ul>
 		</li>
@@ -118,41 +117,48 @@
                     <a href="#">Links</a>
                     <ul class="dl-submenu">
                         <li><a href="http://randomk.gitcafe.com">RandomK</a></li>
+                    
+                        <li><a href="http://blog.csdn.net/kosl90">Old Blog</a></li>
                     </ul>
                 </li>
                 <li><a href="http://kosl90.github.io/feed.xml">Feed</a></li>
-                <li><a href="http://blog.csdn.net/kosl90">Old Blog</a></li>
         </ul><!-- /.dl-menu -->
 </nav><!-- /.dl-menuwrapper -->
 
 
 
 <div class="entry-header">
-  <div class="entry-image"><img src="http://kosl90.github.io/images/abstract-6.jpg" alt="Bit Getter and Setter" itemprop="image">
-    
+  
+  <div class="entry-image">
+    <img src="http://kosl90.github.io/images/abstract-6.jpg" alt="Bit Getter and Setter">
   </div><!-- /.entry-image -->
 </div><!-- /.entry-header -->
 
 
-<div id="main" role="main" itemprop="mainContentOfPage" itemscope itemtype="http://schema.org/Blog">
-  <article class="hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+<div id="main" role="main">
+  <article class="hentry">
     <header class="header-title">
       <div class="header-title-wrap">
         
-          <h1 class="entry-title" itemprop="name"><a href="http://kosl90.github.io/bit-getter-and-setter" rel="bookmark" title="Bit Getter and Setter" itemprop="url">Bit Getter and Setter</a></h1>
+          <h1 class="entry-title"><a href="http://kosl90.github.io/bit-getter-and-setter" rel="bookmark" title="Bit Getter and Setter">Bit Getter and Setter</a></h1>
         
         <h2>March 09, 2014</h2>
+        
       </div><!-- /.header-title-wrap -->
     </header>
-    <div class="entry-content" itemprop="description">
-      <p>昨天周六，下午把床晒了晒，在晒床的时候呢，我则躺在沙发上看了看《算法精解》，正好看到位运算。里面有两个简单的操作，一个是对某一位设1/0，另一个则是获取某一位是1/0。当时的直觉是，代码写的简单直白，应该还有更高效的处理方法。</p>
+    <div class="entry-content">
+      <p>昨天周六，下午把床晒了晒，在晒床的时候呢，我则躺在沙发上看了看《算法精解》，正好看到位运算。里面有两个简单的操作，
+一个是对某一位设1/0，另一个则是获取某一位是1/0。当时的直觉是，代码写的简单直白，应该还有更高效的处理方法。</p>
 
-<p>虽然这个想法仅仅是在脑海中一闪而过，但是晚上正好在C++吧看到<a href="http://tieba.baidu.com/p/2900558125">一篇帖子</a>，楼主提出了类似的写法，并称该算法效率太差，希望高手指教。</p>
+<p>虽然这个想法仅仅是在脑海中一闪而过，但是晚上正好在C++吧看到<a href="http://tieba.baidu.com/p/2900558125">一篇帖子</a>，
+楼主提出了类似的写法，并称该算法效率太差，希望高手指教。</p>
 
 <p>进去看了看，首先看到的是楼主说即使将mask存入数组，可还是太慢。另外有人给出了一段简单的代码片段，楼主根据这个代码片段写了一个简单的宏：</p>
 <div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#define SetBit(LPByte,BitPlace,BitValue) ( BitValue==0? (*LPByte)&amp;=~(1&lt;&lt;(BitPlace-1)) : (*LPByte)|=(1&lt;&lt;(BitPlace-1)));</span>
 </code></pre></div>
-<p>代码很简单，首先判断要设的值是1还是0，然后根据这个值来对1进行位移等位操作然后根据不同的值使用其他位操作来对特定的位设值。不过根据评论，似乎对性能没有多大的影响。看到这段代码的感觉是，应该可以不用判断BitValue的值，而是对BitValue进行某些位操作来得到某个值，之后使用这个值与LPByte进行一定位操作之后的结果进行某个位操作之后即可得到正确的值。果然，楼主在楼下提出了另一段代码，实现了我所想的方案：</p>
+<p>代码很简单，首先判断要设的值是1还是0，然后根据这个值来对1进行位移等位操作然后根据不同的值使用其他位操作来对特定的位设值。
+不过根据评论，似乎对性能没有多大的影响。看到这段代码的感觉是，应该可以不用判断BitValue的值，而是对BitValue进行某些位操作来得到某个值，
+之后使用这个值与LPByte进行一定位操作之后的结果进行某个位操作之后即可得到正确的值。果然，楼主在楼下提出了另一段代码，实现了我所想的方案：</p>
 <div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#define SetBit(LPByte,BitPlace,BitValue) ( (*LPByte) = ( (*LPByte)&amp;~(1&lt;&lt;(BitPlace-1) ))|(BitValue&lt;&lt;(BitPlace-1)) );</span>
 
 <span class="cp">#define GetBit(LPByte,BitPlace,BitValue) ( BitValue=((*LPByte)&amp;(1&lt;&lt;(BitPlace-1)))&gt;&gt;(BitPlace-1) );</span>
@@ -168,16 +174,23 @@
     <span class="k">return</span> <span class="p">(</span><span class="n">b</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">pos</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)))</span> <span class="o">&gt;&gt;</span> <span class="p">(</span><span class="n">pos</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>这段宏改编的代码很简单，而且所采用的思想其实也很简单，对于set_bit函数来说，首先通过对1的位移和取反，然后与b进行与操作将该位置为0，然后对value进行位移，之后再与之前清空后的结果进行或操作得到最后的结果。类似的，get_bit函数则是与set_bit函数相反，将其他位置位0而保留需要获取的位，之后将其位移得到最后的结果。后来楼主又贴出了另外一段对n位进行处理的代码：</p>
+<p>这段宏改编的代码很简单，而且所采用的思想其实也很简单，对于set_bit函数来说，首先通过对1的位移和取反，然后与b进行与操作将该位置为0，
+然后对value进行位移，之后再与之前清空后的结果进行或操作得到最后的结果。类似的，get_bit函数则是与set_bit函数相反，将其他位置位0而保留需要获取的位，
+之后将其位移得到最后的结果。后来楼主又贴出了另外一段对n位进行处理的代码：</p>
 <div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#define GetNBit (LPByte,Begin,End,BitValue) (BitValue=((*LPByte)&amp;((255&gt;&gt;(8-End))&amp;(255&lt;&lt;(Begin-1))))&gt;&gt;(Begin-1));</span>
 
 <span class="cp">#define SetNBit (LPByte,Begin,End,BitValue) (*LPByte)=((*LPByte)&amp;(~((255&gt;&gt;(8-End))&amp;(255&lt;&lt;(Begin-1)))))|(BitValue&lt;&lt;(Begin-1));</span>
 </code></pre></div>
-<p>这段代码就不改写了，原理和之前的是一样的。当然，还有人提到了内联汇编，使用BT/BTS之类的命令，不过我觉得已经没有必要了。虽然我不是很懂汇编，也没有测试，不过我对使用这些带有测试的操作能够比直接通过简单的位操作来得到结果更快持怀疑态度，过段时间我想我会测试一下。</p>
+<p>这段代码就不改写了，原理和之前的是一样的。当然，还有人提到了内联汇编，使用BT/BTS之类的命令，不过我觉得已经没有必要了。
+虽然我不是很懂汇编，也没有测试，不过我对使用这些带有测试的操作能够比直接通过简单的位操作来得到结果更快持怀疑态度，
+过段时间我想我会测试一下。</p>
 
-<p>不过既然提到了汇编，而主题又是位移什么的，不禁让我想起了以前看《深入理解计算机系统》的日子，情不自禁的将代码生成汇编代码观察了一番，代码比较简单，没什么值得多说的，值得一提的是参数和本地变量是通过ebp寄存器做偏移得到的，eax寄存器则被频繁用于存储结果，并在最后用来存储函数的返回值。而楼主以前使用switch很慢的原因，根据幻之上帝的说法是：要分支预测+间接操作慢个几十倍正常。</p>
+<p>不过既然提到了汇编，而主题又是位移什么的，不禁让我想起了以前看《深入理解计算机系统》的日子，情不自禁的将代码生成汇编代码观察了一番，
+代码比较简单，没什么值得多说的，值得一提的是参数和本地变量是通过ebp寄存器做偏移得到的，eax寄存器则被频繁用于存储结果，并在最后用来
+存储函数的返回值。而楼主以前使用switch很慢的原因，根据幻之上帝的说法是：要分支预测+间接操作慢个几十倍正常。</p>
 
-<p>回头想一下，其实这些操作与思想都是很基础的，尤其是将对某一位进行保留和置1/0这几个操作可以说是基础中的基础。再次提醒自己，不论做什么事情，基础都是最重要的，不要只看到别人的光鲜亮丽，要静下心来学习，打好基础，只有基础好了，才能够从基础中演变出各种犀利的东西。</p>
+<p>回头想一下，其实这些操作与思想都是很基础的，尤其是将对某一位进行保留和置1/0这几个操作可以说是基础中的基础。再次提醒自己，
+不论做什么事情，基础都是最重要的，不要只看到别人的光鲜亮丽，要静下心来学习，打好基础，只有基础好了，才能够从基础中演变出各种犀利的东西。</p>
 
 <p>参考资料（关于汇编的）：</p>
 
@@ -189,22 +202,20 @@
 </ol>
 
       <footer class="entry-meta">
-        <span class="entry-tags"><a href="http://kosl90.github.io/tags/index.html#c" title="Pages tagged c" rel="tag" class="tag">c</a><a href="http://kosl90.github.io/tags/index.html#cpp" title="Pages tagged cpp" rel="tag" class="tag">cpp</a><a href="http://kosl90.github.io/tags/index.html#c++" title="Pages tagged c++" rel="tag" class="tag">c++</a><a href="http://kosl90.github.io/tags/index.html#bit-operation" title="Pages tagged bit-operation" rel="tag" class="tag">bit-operation</a></span>
-        <span><a href="http://kosl90.github.io/bit-getter-and-setter" rel="bookmark" title="Bit Getter and Setter" itemprop="url">Bit Getter and Setter</a> was published on <span class="entry-date date published updated"><time datetime="2014-03-09T00:00:00+08:00" itemprop="datePublished">March 09, 2014</time></span></span>
-        (revised: <span class="entry-date date modified"><time datetime="2014-03-09" itemprop="dateModified">03/09/2014</time></span>)
-        <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="fn"><a href="http://kosl90.github.io/about" title="About Lee" itemprop="url">Lee</a></span></span>
+        <span class="entry-tags"><a href="http://kosl90.github.io/tags/#c" title="Pages tagged c" class="tag">c</a><a href="http://kosl90.github.io/tags/#cpp" title="Pages tagged cpp" class="tag">cpp</a><a href="http://kosl90.github.io/tags/#c++" title="Pages tagged c++" class="tag">c++</a><a href="http://kosl90.github.io/tags/#bit-operation" title="Pages tagged bit-operation" class="tag">bit-operation</a></span>
+        <span><a href="http://kosl90.github.io/bit-getter-and-setter" rel="bookmark" title="Bit Getter and Setter">Bit Getter and Setter</a> was published on <span class="entry-date date published updated"><time datetime="2014-03-09T00:00:00+08:00">March 09, 2014</time></span></span>
+        (revised: <span class="entry-date date modified"><time datetime="2014-03-09">03/09/2014</time></span>)
+        <span class="author vcard"><span class="fn"><a href="http://kosl90.github.io/about/" title="About Lee">Lee</a></span></span>
         <div class="social-share">
-          <ul class="socialcount socialcount-small inline-list" data-url="http://kosl90.github.io/bit-getter-and-setter" data-share-text="Bit Getter and Setter">
-            <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://kosl90.github.io/bit-getter-and-setter" title="Share on Facebook"><span class="count"><i class="icon-facebook-sign"></i> Like</span></a></li>
-            <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://kosl90.github.io/bit-getter-and-setter" title="Share on Twitter"><span class="count"><i class="icon-twitter-sign"></i> Tweet</span></a></li>
-            <li class="googleplus"><a href="https://plus.google.com/share?url=http://kosl90.github.io/bit-getter-and-setter" title="Share on Google Plus"><span class="count"><i class="icon-google-plus-sign"></i> +1</span></a></li>
+          <ul class="socialcount socialcount-small inline-list">
+            <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://kosl90.github.io/bit-getter-and-setter" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
+            <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://kosl90.github.io/bit-getter-and-setter" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
+            <li class="googleplus"><a href="https://plus.google.com/share?url=http://kosl90.github.io/bit-getter-and-setter" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
           </ul>
         </div><!-- /.social-share -->
       </footer>
     </div><!-- /.entry-content -->
-    <section id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </section><!-- /#disqus_thread -->
+    <section id="disqus_thread"></section><!-- /#disqus_thread -->
     
     <div class="read-more">
       
@@ -236,10 +247,7 @@
 
 <div class="footer-wrapper">
   <footer role="contentinfo">
-    <span>&copy; 2014 Lee. Powered by <a
-        class='footer_link' href="http://jekyllrb.com">Jekyll</a> using the <a
-        class='footer_link' href="http://mademistakes.com/">HPSTR Theme</a>.</span>
-
+    <span>&copy; 2014 Lee. Powered by <a href="http://jekyllrb.com">Jekyll</a> using the <a href="http://mademistakes.com/hpstr/">HPSTR Theme</a>.</span>
   </footer>
 </div><!-- /.footer-wrapper -->
 

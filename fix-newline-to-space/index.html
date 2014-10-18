@@ -38,11 +38,10 @@
 <meta name="MobileOptimized" content="320">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 <!-- For all browsers -->
 <link rel="stylesheet" href="http://kosl90.github.io/assets/css/main.min.css">
 <!-- Webfonts -->
-<!-- <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css"> -->
+<link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
 
 <meta http-equiv="cleartype" content="on">
 
@@ -71,10 +70,10 @@
 
 </head>
 
-<body id="post" class="feature" itemscope itemtype="http://schema.org/WebPage">
+<body id="post" class="feature">
 
 <!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
-<nav id="dl-menu" class="dl-menuwrapper" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+<nav id="dl-menu" class="dl-menuwrapper" role="navigation">
 	<button class="dl-trigger">Open Menu</button>
 	<ul class="dl-menu">
 		<li><a href="http://kosl90.github.io">Home</a></li>
@@ -110,7 +109,7 @@
 		<li>
 			<a href="#">Posts</a>
 			<ul class="dl-submenu">
-				<li><a href="http://kosl90.github.io/archive/">All Posts</a></li>
+				<li><a href="http://kosl90.github.io/posts/">All Posts</a></li>
 				<li><a href="http://kosl90.github.io/tags/">All Tags</a></li>
 			</ul>
 		</li>
@@ -118,38 +117,45 @@
                     <a href="#">Links</a>
                     <ul class="dl-submenu">
                         <li><a href="http://randomk.gitcafe.com">RandomK</a></li>
+                    
+                        <li><a href="http://blog.csdn.net/kosl90">Old Blog</a></li>
                     </ul>
                 </li>
                 <li><a href="http://kosl90.github.io/feed.xml">Feed</a></li>
-                <li><a href="http://blog.csdn.net/kosl90">Old Blog</a></li>
         </ul><!-- /.dl-menu -->
 </nav><!-- /.dl-menuwrapper -->
 
 
 
 <div class="entry-header">
-  <div class="entry-image"><img src="http://kosl90.github.io/images/abstract-2.jpg" alt="Fix Newline to Space" itemprop="image">
-    
+  
+  <div class="entry-image">
+    <img src="http://kosl90.github.io/images/abstract-2.jpg" alt="Fix Newline to Space">
   </div><!-- /.entry-image -->
 </div><!-- /.entry-header -->
 
 
-<div id="main" role="main" itemprop="mainContentOfPage" itemscope itemtype="http://schema.org/Blog">
-  <article class="hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+<div id="main" role="main">
+  <article class="hentry">
     <header class="header-title">
       <div class="header-title-wrap">
         
-          <h1 class="entry-title" itemprop="name"><a href="http://kosl90.github.io/fix-newline-to-space" rel="bookmark" title="Fix Newline to Space" itemprop="url">Fix Newline to Space</a></h1>
+          <h1 class="entry-title"><a href="http://kosl90.github.io/fix-newline-to-space" rel="bookmark" title="Fix Newline to Space">Fix Newline to Space</a></h1>
         
         <h2>February 23, 2014</h2>
+        
       </div><!-- /.header-title-wrap -->
     </header>
-    <div class="entry-content" itemprop="description">
-      <p>之前，<a href="http://randomk.gitcafe.com/">RandomK</a>说我的blog有bug，其实在他说之前我就已经知道了，只是当时比较晚，所以没有修，今天周末将其解决之。</p>
+    <div class="entry-content">
+      <p>更新：由于jekyll的更新，post_filter已经被移除，因此修改方式已经无效。</p>
+
+<p>之前，<a href="http://randomk.gitcafe.com/">RandomK</a>说我的blog有bug，其实在他说之前我就已经知道了，只是当时比较晚，所以没有修，今天周末将其解决之。</p>
 
 <h2>原因</h2>
 
-<p>我使用的是redcarpet作为markdown的转换器，jekyll将多行的段落转换成html之后在浏览器中显示会很奇怪，在原始的markdown中的某一行最后一个字与下一行的第一个字之间存在一个空格，作为使用单词的外国淫来说没什么问题，可是作为大天朝子民是无法忍受的。
+<p>我使用的是redcarpet作为markdown的转换器，jekyll将多行的段落转换成html之后在浏览
+器中显示会很奇怪，在原始的markdown中的某一行最后一个字与下一行的第一个字之间存
+在一个空格，作为使用单词的外国淫来说没什么问题，可是作为大天朝子民是无法忍受的。
 <figure>
 <a href="http://kosl90.github.io/images/fix-space/space.png" class='fancybox'>
 <img data-echo="http://kosl90.github.io/images/fix-space/space.png" alt="space" title="space">
@@ -163,11 +169,16 @@
 
 <h2>解决方案二 在markdown转换为html前处理一下</h2>
 
-<p>由于无法忍受第一种解决方案，只能在markdown转换为html之前进行一些预处理了。在网上搜索一番后发现果然不止我一人遇到此问题，并且找到了一个<a href="http://chenyufei.info/blog/2011-12-23/fix-chinese-newline-becomes-space-in-browser-problem/">解决方案</a>。不过该解决方案有一定的局限性，第一，没有处理汉英和英汉这两种情况，第二，没有处理摘要。</p>
+<p>由于无法忍受第一种解决方案，只能在markdown转换为html之前进行一些预处理了。在网
+上搜索一番后发现果然不止我一人遇到此问题，并且找到了一个<a href="http://chenyufei.info/blog/2011-12-23/fix-chinese-newline-becomes-space-in-browser-problem/">解决方案</a>。
+不过该解决方案有一定的局限性，第一，没有处理汉英和英汉这两种情况，第二，没有处
+理摘要。</p>
 
 <p>为了解决以上两个问题，必须做出一些更改。</p>
 
-<p>首先，作为一个非octopress用户，果断得去github上将octopress的<a href="https://github.com/imathis/octopress/blob/master/plugins/post_filters.rb">post_filters plugins</a>得到，然后，从<a href="http://chenyufei.info/blog/2011-12-23/fix-chinese-newline-becomes-space-in-browser-problem/">解决 Markdown 转 HTML 中文换行变空格的问题</a>将代码拷贝并保存到存放plugins的目录。然后就可以开始修改了。</p>
+<p>首先，作为一个非octopress用户，果断得去github上将octopress的<a href="https://github.com/imathis/octopress/blob/master/plugins/post_filters.rb">post_filters plugins</a>得到，
+然后，从<a href="http://chenyufei.info/blog/2011-12-23/fix-chinese-newline-becomes-space-in-browser-problem/">解决 Markdown 转 HTML 中文换行变空格的问题</a>将代码拷贝并保存
+到存放plugins的目录。然后就可以开始修改了。</p>
 
 <p>修改1:</p>
 <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">class</span> <span class="nc">String</span>
@@ -202,7 +213,8 @@
 </a>
     <figcaption>摘要中显示错误</figcaption>
 </figure>
-由于在pre_render中添加<code>post.excerpt.join_chinese!</code>会导致jekyll创建html时失败，因此采用添加一个filter供Liquid使用，从而解决解决此问题。</p>
+由于在pre_render中添加<code>post.excerpt.join_chinese!</code>会导致jekyll创建html时失败，
+因此采用添加一个filter供Liquid使用，从而解决解决此问题。</p>
 
 <p>将一下代码加入Jekyll模块中</p>
 <div class="highlight"><pre><code class="language-ruby" data-lang="ruby">  <span class="k">module</span> <span class="nn">TemplateJoinChineseFilter</span>
@@ -211,7 +223,8 @@
     <span class="k">end</span>
   <span class="k">end</span>
 </code></pre></div>
-<p>然后将<code>Liquid::Template.register_filter(Jekyll::TemplateJoinChineseFilter)</code>添加到最后一行。最后，只需要在使用摘要的时候使用<code>{{ page.excerpt | join_chinese }}</code>替代<code>{{ page.excerpt }}</code>即可。
+<p>然后将<code>Liquid::Template.register_filter(Jekyll::TemplateJoinChineseFilter)</code>添加到最后一行。
+最后，只需要在使用摘要的时候使用<code>{{ page.excerpt | join_chinese }}</code>替代<code>{{ page.excerpt }}</code>即可。
 <figure class='half'>
 <a href="http://kosl90.github.io/images/fix-space/wrong-excerpt.png" class='fancybox'>
 <img data-echo="http://kosl90.github.io/images/fix-space/wrong-excerpt.png" alt="wrong-excerpt" title="wrong-excerpt">
@@ -240,22 +253,20 @@
 </ol>
 
       <footer class="entry-meta">
-        <span class="entry-tags"><a href="http://kosl90.github.io/tags/index.html#jekyll" title="Pages tagged jekyll" rel="tag" class="tag">jekyll</a></span>
-        <span><a href="http://kosl90.github.io/fix-newline-to-space" rel="bookmark" title="Fix Newline to Space" itemprop="url">Fix Newline to Space</a> was published on <span class="entry-date date published updated"><time datetime="2014-02-23T00:00:00+08:00" itemprop="datePublished">February 23, 2014</time></span></span>
-        (revised: <span class="entry-date date modified"><time datetime="2014-02-22" itemprop="dateModified">02/22/2014</time></span>)
-        <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="fn"><a href="http://kosl90.github.io/about" title="About Lee" itemprop="url">Lee</a></span></span>
+        <span class="entry-tags"><a href="http://kosl90.github.io/tags/#jekyll" title="Pages tagged jekyll" class="tag">jekyll</a></span>
+        <span><a href="http://kosl90.github.io/fix-newline-to-space" rel="bookmark" title="Fix Newline to Space">Fix Newline to Space</a> was published on <span class="entry-date date published updated"><time datetime="2014-02-23T00:00:00+08:00">February 23, 2014</time></span></span>
+        (revised: <span class="entry-date date modified"><time datetime="2014-02-22">02/22/2014</time></span>)
+        <span class="author vcard"><span class="fn"><a href="http://kosl90.github.io/about/" title="About Lee">Lee</a></span></span>
         <div class="social-share">
-          <ul class="socialcount socialcount-small inline-list" data-url="http://kosl90.github.io/fix-newline-to-space" data-share-text="Fix Newline to Space">
-            <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://kosl90.github.io/fix-newline-to-space" title="Share on Facebook"><span class="count"><i class="icon-facebook-sign"></i> Like</span></a></li>
-            <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://kosl90.github.io/fix-newline-to-space" title="Share on Twitter"><span class="count"><i class="icon-twitter-sign"></i> Tweet</span></a></li>
-            <li class="googleplus"><a href="https://plus.google.com/share?url=http://kosl90.github.io/fix-newline-to-space" title="Share on Google Plus"><span class="count"><i class="icon-google-plus-sign"></i> +1</span></a></li>
+          <ul class="socialcount socialcount-small inline-list">
+            <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://kosl90.github.io/fix-newline-to-space" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
+            <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://kosl90.github.io/fix-newline-to-space" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
+            <li class="googleplus"><a href="https://plus.google.com/share?url=http://kosl90.github.io/fix-newline-to-space" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
           </ul>
         </div><!-- /.social-share -->
       </footer>
     </div><!-- /.entry-content -->
-    <section id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </section><!-- /#disqus_thread -->
+    <section id="disqus_thread"></section><!-- /#disqus_thread -->
     
     <div class="read-more">
       
@@ -287,10 +298,7 @@
 
 <div class="footer-wrapper">
   <footer role="contentinfo">
-    <span>&copy; 2014 Lee. Powered by <a
-        class='footer_link' href="http://jekyllrb.com">Jekyll</a> using the <a
-        class='footer_link' href="http://mademistakes.com/">HPSTR Theme</a>.</span>
-
+    <span>&copy; 2014 Lee. Powered by <a href="http://jekyllrb.com">Jekyll</a> using the <a href="http://mademistakes.com/hpstr/">HPSTR Theme</a>.</span>
   </footer>
 </div><!-- /.footer-wrapper -->
 

@@ -38,11 +38,10 @@
 <meta name="MobileOptimized" content="320">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 <!-- For all browsers -->
 <link rel="stylesheet" href="http://kosl90.github.io/assets/css/main.min.css">
 <!-- Webfonts -->
-<!-- <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css"> -->
+<link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
 
 <meta http-equiv="cleartype" content="on">
 
@@ -71,10 +70,10 @@
 
 </head>
 
-<body id="post-index" class="feature" itemscope itemtype="http://schema.org/WebPage">
+<body id="post-index" class="feature">
 
 <!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
-<nav id="dl-menu" class="dl-menuwrapper" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+<nav id="dl-menu" class="dl-menuwrapper" role="navigation">
 	<button class="dl-trigger">Open Menu</button>
 	<ul class="dl-menu">
 		<li><a href="http://kosl90.github.io">Home</a></li>
@@ -110,7 +109,7 @@
 		<li>
 			<a href="#">Posts</a>
 			<ul class="dl-submenu">
-				<li><a href="http://kosl90.github.io/archive/">All Posts</a></li>
+				<li><a href="http://kosl90.github.io/posts/">All Posts</a></li>
 				<li><a href="http://kosl90.github.io/tags/">All Tags</a></li>
 			</ul>
 		</li>
@@ -118,78 +117,97 @@
                     <a href="#">Links</a>
                     <ul class="dl-submenu">
                         <li><a href="http://randomk.gitcafe.com">RandomK</a></li>
+                    
+                        <li><a href="http://blog.csdn.net/kosl90">Old Blog</a></li>
                     </ul>
                 </li>
                 <li><a href="http://kosl90.github.io/feed.xml">Feed</a></li>
-                <li><a href="http://blog.csdn.net/kosl90">Old Blog</a></li>
         </ul><!-- /.dl-menu -->
 </nav><!-- /.dl-menuwrapper -->
 
 
 <div class="entry-header">
+  <div class="image-credit">Image source: <a href="http://www.dargadgetz.com/ios-7-abstract-wallpaper-pack-for-iphone-5-and-ipod-touch-retina/">dargadgetz</a></div><!-- /.image-credit -->
   
-    <div class="entry-image"><img src="http://kosl90.github.io/images/abstract-1.jpg" alt="Latest Posts" itemprop="image">
-      <div class="image-credit">Image source: <a href="http://www.dargadgetz.com/ios-7-abstract-wallpaper-pack-for-iphone-5-and-ipod-touch-retina/">dargadgetz</a></div><!-- /.image-credit -->
+    <div class="entry-image">
+      <img src="http://kosl90.github.io/images/abstract-1.jpg" alt="Latest Posts">
     </div><!-- /.entry-image -->
   
   <div class="header-title">
     <div class="header-title-wrap">
       <h1>kosl90's Blog</h1>
-      <h2 itemprop="name">Latest Posts</h2>
+      <h2>Latest Posts</h2>
     </div><!-- /.header-title-wrap -->
   </div><!-- /.header-title -->
 </div><!-- /.entry-header -->
 
-<div id="main" role="main" itemprop="mainContentOfPage" itemscope itemtype="http://schema.org/Blog">
+<div id="main" role="main">
   
-<article class="hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+<article class="hentry">
   <header>
-    <div class="entry-meta"><span class="entry-date date published updated"><time datetime="2014-06-20T00:00:00+08:00" itemprop="datePublished"><a href="http://kosl90.github.io/golang-reflect-101">June 20, 2014</a></time></span><span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="fn"><a href="http://kosl90.github.io/about" title="About Lee" itemprop="url">Lee</a></span></span>&nbsp; &bull; &nbsp;<span class="entry-comments"><a href="http://kosl90.github.io/golang-reflect-101#disqus_thread">Comment</a></span></div><!-- /.entry-meta -->
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2014-06-20T00:00:00+08:00"><a href="http://kosl90.github.io/golang-reflect-101">June 20, 2014</a></time></span><span class="author vcard"><span class="fn"><a href="http://kosl90.github.io/about/" title="About Lee">Lee</a></span></span>&nbsp; &bull; &nbsp;<span class="entry-comments"><a href="http://kosl90.github.io/golang-reflect-101#disqus_thread">Comment</a></span>
+      
+    </div><!-- /.entry-meta -->
     
-      <h1 class="entry-title" itemprop="name"><a href="http://kosl90.github.io/golang-reflect-101" rel="bookmark" title="Golang Reflect 101" itemprop="url">Golang Reflect 101</a></h1>
+      <h1 class="entry-title"><a href="http://kosl90.github.io/golang-reflect-101" rel="bookmark" title="Golang Reflect 101" itemprop="url">Golang Reflect 101</a></h1>
     
   </header>
-  <div class="entry-content" itemprop="description">
+  <div class="entry-content">
     <p>元编程是一个很有意思东西，正好golang中包含了一个reflect包提供反射功能，上周末看了看reflect包，在此记录一下学习体会。</p>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
 
-<article class="hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+<article class="hentry">
   <header>
-    <div class="entry-meta"><span class="entry-date date published updated"><time datetime="2014-03-09T00:00:00+08:00" itemprop="datePublished"><a href="http://kosl90.github.io/bit-getter-and-setter">March 09, 2014</a></time></span><span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="fn"><a href="http://kosl90.github.io/about" title="About Lee" itemprop="url">Lee</a></span></span>&nbsp; &bull; &nbsp;<span class="entry-comments"><a href="http://kosl90.github.io/bit-getter-and-setter#disqus_thread">Comment</a></span></div><!-- /.entry-meta -->
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2014-03-09T00:00:00+08:00"><a href="http://kosl90.github.io/bit-getter-and-setter">March 09, 2014</a></time></span><span class="author vcard"><span class="fn"><a href="http://kosl90.github.io/about/" title="About Lee">Lee</a></span></span>&nbsp; &bull; &nbsp;<span class="entry-comments"><a href="http://kosl90.github.io/bit-getter-and-setter#disqus_thread">Comment</a></span>
+      
+    </div><!-- /.entry-meta -->
     
-      <h1 class="entry-title" itemprop="name"><a href="http://kosl90.github.io/bit-getter-and-setter" rel="bookmark" title="Bit Getter and Setter" itemprop="url">Bit Getter and Setter</a></h1>
+      <h1 class="entry-title"><a href="http://kosl90.github.io/bit-getter-and-setter" rel="bookmark" title="Bit Getter and Setter" itemprop="url">Bit Getter and Setter</a></h1>
     
   </header>
-  <div class="entry-content" itemprop="description">
-    <p>昨天周六，下午把床晒了晒，在晒床的时候呢，我则躺在沙发上看了看《算法精解》，正好看到位运算。里面有两个简单的操作，一个是对某一位设1/0，另一个则是获取某一位是1/0。当时的直觉是，代码写的简单直白，应该还有更高效的处理方法。</p>
+  <div class="entry-content">
+    <p>昨天周六，下午把床晒了晒，在晒床的时候呢，我则躺在沙发上看了看《算法精解》，正好看到位运算。里面有两个简单的操作，
+一个是对某一位设1/0，另一个则是获取某一位是1/0。当时的直觉是，代码写的简单直白，应该还有更高效的处理方法。</p>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
 
-<article class="hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+<article class="hentry">
   <header>
-    <div class="entry-meta"><span class="entry-date date published updated"><time datetime="2014-02-23T00:00:00+08:00" itemprop="datePublished"><a href="http://kosl90.github.io/fix-newline-to-space">February 23, 2014</a></time></span><span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="fn"><a href="http://kosl90.github.io/about" title="About Lee" itemprop="url">Lee</a></span></span>&nbsp; &bull; &nbsp;<span class="entry-comments"><a href="http://kosl90.github.io/fix-newline-to-space#disqus_thread">Comment</a></span></div><!-- /.entry-meta -->
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2014-02-23T00:00:00+08:00"><a href="http://kosl90.github.io/fix-newline-to-space">February 23, 2014</a></time></span><span class="author vcard"><span class="fn"><a href="http://kosl90.github.io/about/" title="About Lee">Lee</a></span></span>&nbsp; &bull; &nbsp;<span class="entry-comments"><a href="http://kosl90.github.io/fix-newline-to-space#disqus_thread">Comment</a></span>
+      
+    </div><!-- /.entry-meta -->
     
-      <h1 class="entry-title" itemprop="name"><a href="http://kosl90.github.io/fix-newline-to-space" rel="bookmark" title="Fix Newline to Space" itemprop="url">Fix Newline to Space</a></h1>
+      <h1 class="entry-title"><a href="http://kosl90.github.io/fix-newline-to-space" rel="bookmark" title="Fix Newline to Space" itemprop="url">Fix Newline to Space</a></h1>
     
   </header>
-  <div class="entry-content" itemprop="description">
-    <p>之前，<a href="http://randomk.gitcafe.com/">RandomK</a>说我的blog有bug，其实在他说之前我就已经知道了，只是当时比较晚，所以没有修，今天周末将其解决之。</p>
+  <div class="entry-content">
+    <p>更新：由于jekyll的更新，post_filter已经被移除，因此修改方式已经无效。</p>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
 
-<article class="hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+<article class="hentry">
   <header>
-    <div class="entry-meta"><span class="entry-date date published updated"><time datetime="2014-02-20T00:00:00+08:00" itemprop="datePublished"><a href="http://kosl90.github.io/golang-traps">February 20, 2014</a></time></span><span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="fn"><a href="http://kosl90.github.io/about" title="About Lee" itemprop="url">Lee</a></span></span>&nbsp; &bull; &nbsp;<span class="entry-comments"><a href="http://kosl90.github.io/golang-traps#disqus_thread">Comment</a></span></div><!-- /.entry-meta -->
+    <div class="entry-meta">
+      <span class="entry-date date published updated"><time datetime="2014-02-20T00:00:00+08:00"><a href="http://kosl90.github.io/golang-traps">February 20, 2014</a></time></span><span class="author vcard"><span class="fn"><a href="http://kosl90.github.io/about/" title="About Lee">Lee</a></span></span>&nbsp; &bull; &nbsp;<span class="entry-comments"><a href="http://kosl90.github.io/golang-traps#disqus_thread">Comment</a></span>
+      
+    </div><!-- /.entry-meta -->
     
-      <h1 class="entry-title" itemprop="name"><a href="http://kosl90.github.io/golang-traps" rel="bookmark" title="Golang Traps" itemprop="url">Golang Traps</a></h1>
+      <h1 class="entry-title"><a href="http://kosl90.github.io/golang-traps" rel="bookmark" title="Golang Traps" itemprop="url">Golang Traps</a></h1>
     
   </header>
-  <div class="entry-content" itemprop="description">
-    <p>这段时间，在公司项目中使用了golang，感觉golang的确有他独到的地方，尤其是goroutine和channel使事情变的简单。可是作为一门新的语言golang仍然会有不少的问题，例如没有检测文件是否存在的函数，没有拷贝文件的函数等等，诸如此类，除了这类问题以外还存在一些与直觉有所不同的问题，此篇博客将会持续记录在使用golang的过程中遇到的一些问题。</p>
+  <div class="entry-content">
+    <p>这段时间，在公司项目中使用了golang，感觉golang的确有他独到的地方，尤其是
+goroutine和channel使事情变的简单。可是作为一门新的语言golang仍然会有不少的问题
+，例如没有检测文件是否存在的函数，没有拷贝文件的函数等等，诸如此类，除了这类问
+题以外还存在一些与直觉有所不同的问题，此篇博客将会持续记录在使用golang的过程中
+遇到的一些问题。</p>
 
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
@@ -210,17 +228,13 @@
   
     Next
   
-
-</div>
+</div><!-- /.pagination -->
 
 </div><!-- /#main -->
 
 <div class="footer-wrapper">
   <footer role="contentinfo">
-    <span>&copy; 2014 Lee. Powered by <a
-        class='footer_link' href="http://jekyllrb.com">Jekyll</a> using the <a
-        class='footer_link' href="http://mademistakes.com/">HPSTR Theme</a>.</span>
-
+    <span>&copy; 2014 Lee. Powered by <a href="http://jekyllrb.com">Jekyll</a> using the <a href="http://mademistakes.com/hpstr/">HPSTR Theme</a>.</span>
   </footer>
 </div><!-- /.footer-wrapper -->
 
@@ -246,7 +260,7 @@ ga('create', 'UA-48343245-1', 'kosl90.github.io');
 
 
 
-          
+
 
 </body>
 </html>

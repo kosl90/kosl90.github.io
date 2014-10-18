@@ -38,11 +38,10 @@
 <meta name="MobileOptimized" content="320">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 <!-- For all browsers -->
 <link rel="stylesheet" href="http://kosl90.github.io/assets/css/main.min.css">
 <!-- Webfonts -->
-<!-- <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css"> -->
+<link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
 
 <meta http-equiv="cleartype" content="on">
 
@@ -71,10 +70,10 @@
 
 </head>
 
-<body id="post" class="feature" itemscope itemtype="http://schema.org/WebPage">
+<body id="post" class="feature">
 
 <!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
-<nav id="dl-menu" class="dl-menuwrapper" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+<nav id="dl-menu" class="dl-menuwrapper" role="navigation">
 	<button class="dl-trigger">Open Menu</button>
 	<ul class="dl-menu">
 		<li><a href="http://kosl90.github.io">Home</a></li>
@@ -110,7 +109,7 @@
 		<li>
 			<a href="#">Posts</a>
 			<ul class="dl-submenu">
-				<li><a href="http://kosl90.github.io/archive/">All Posts</a></li>
+				<li><a href="http://kosl90.github.io/posts/">All Posts</a></li>
 				<li><a href="http://kosl90.github.io/tags/">All Tags</a></li>
 			</ul>
 		</li>
@@ -118,54 +117,65 @@
                     <a href="#">Links</a>
                     <ul class="dl-submenu">
                         <li><a href="http://randomk.gitcafe.com">RandomK</a></li>
+                    
+                        <li><a href="http://blog.csdn.net/kosl90">Old Blog</a></li>
                     </ul>
                 </li>
                 <li><a href="http://kosl90.github.io/feed.xml">Feed</a></li>
-                <li><a href="http://blog.csdn.net/kosl90">Old Blog</a></li>
         </ul><!-- /.dl-menu -->
 </nav><!-- /.dl-menuwrapper -->
 
 
 
 <div class="entry-header">
-  <div class="entry-image"><img src="http://kosl90.github.io/images/abstract-3.jpg" alt="Golang Traps" itemprop="image">
-    <div class="image-credit">Image source: <a href="http://www.dargadgetz.com/ios-7-abstract-wallpaper-pack-for-iphone-5-and-ipod-touch-retina/">dargadgetz</a></div><!-- /.image-credit -->
+  <div class="image-credit">Image source: <a href="http://www.dargadgetz.com/ios-7-abstract-wallpaper-pack-for-iphone-5-and-ipod-touch-retina/">dargadgetz</a></div><!-- /.image-credit -->
+  <div class="entry-image">
+    <img src="http://kosl90.github.io/images/abstract-3.jpg" alt="Golang Traps">
   </div><!-- /.entry-image -->
 </div><!-- /.entry-header -->
 
 
-<div id="main" role="main" itemprop="mainContentOfPage" itemscope itemtype="http://schema.org/Blog">
-  <article class="hentry" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+<div id="main" role="main">
+  <article class="hentry">
     <header class="header-title">
       <div class="header-title-wrap">
         
-          <h1 class="entry-title" itemprop="name"><a href="http://kosl90.github.io/golang-traps" rel="bookmark" title="Golang Traps" itemprop="url">Golang Traps</a></h1>
+          <h1 class="entry-title"><a href="http://kosl90.github.io/golang-traps" rel="bookmark" title="Golang Traps">Golang Traps</a></h1>
         
         <h2>February 20, 2014</h2>
+        
       </div><!-- /.header-title-wrap -->
     </header>
-    <div class="entry-content" itemprop="description">
-      <p>这段时间，在公司项目中使用了golang，感觉golang的确有他独到的地方，尤其是goroutine和channel使事情变的简单。可是作为一门新的语言golang仍然会有不少的问题，例如没有检测文件是否存在的函数，没有拷贝文件的函数等等，诸如此类，除了这类问题以外还存在一些与直觉有所不同的问题，此篇博客将会持续记录在使用golang的过程中遇到的一些问题。</p>
+    <div class="entry-content">
+      <p>这段时间，在公司项目中使用了golang，感觉golang的确有他独到的地方，尤其是
+goroutine和channel使事情变的简单。可是作为一门新的语言golang仍然会有不少的问题
+，例如没有检测文件是否存在的函数，没有拷贝文件的函数等等，诸如此类，除了这类问
+题以外还存在一些与直觉有所不同的问题，此篇博客将会持续记录在使用golang的过程中
+遇到的一些问题。</p>
 
 <h2>没有检测文件是否存在的函数</h2>
 
 <p>这个问题是我无意中在某项目中看到解决方案时发现的，解决方案也比较简单。</p>
 
-<div class="highlight"><pre><code class="go"><span class="kd">func</span> <span class="nx">Exist</span><span class="p">(</span><span class="nx">path</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">Exist</span><span class="p">(</span><span class="nx">path</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Stat</span><span class="p">(</span><span class="nx">path</span><span class="p">)</span>
     <span class="k">return</span> <span class="nx">err</span> <span class="o">==</span> <span class="kc">nil</span> <span class="o">||</span> <span class="nx">os</span><span class="p">.</span><span class="nx">IsExist</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
 <span class="p">}</span></code></pre></div>
 
 <h2>没有拷贝文件的函数</h2>
 
-<p>关于这一点，在github上有一个<a href="https://github.com/daaku/go.copyfile">项目</a>可以一定程度上的解决这个问题，不过这个项目还有待完善，而且我个人使用方法感觉很不习惯，还是习惯以设置flag参数的形式来使用。</p>
+<p>关于这一点，在github上有一个<a href="https://github.com/daaku/go.copyfile">项目</a>可以一
+定程度上的解决这个问题，不过这个项目还有待完善，而且我个人使用方法感觉很不习惯
+，还是习惯以设置flag参数的形式来使用。</p>
 
 <h2>filepath.Walk</h2>
 
-<p>这个问题是今天遇到的，当我天真的以为对一个不存在的路径进行Walk的时候，此函数什么也不会做，然后像其他函数一样返回错误给我的时候，可结果却是该函数仍然会调用回调函数。我之前还在纳闷第三个参数有什么用，好吧，今天发现你的文档的确是说了，
+<p>这个问题是今天遇到的，当我天真的以为对一个不存在的路径进行Walk的时候，此函数什
+么也不会做，然后像其他函数一样返回错误给我的时候，可结果却是该函数仍然会调用回
+调函数。我之前还在纳闷第三个参数有什么用，好吧，今天发现你的文档的确是说了，
 <strong>所有</strong>错误都在回调函数中处理，这是我的错。</p>
 
-<div class="highlight"><pre><code class="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
     <span class="s">&quot;os&quot;</span>
@@ -200,7 +210,7 @@
 
 <p>言归正传，go语言中flag.Bool是典型的开关型选项。在使用前，当然要写一个小程序来学习一下：</p>
 
-<div class="highlight"><pre><code class="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;flag&quot;</span>
@@ -216,14 +226,14 @@
 
 <p>测试：</p>
 
-<div class="highlight"><pre><code class="bash">% go run test.go
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">% go run test.go
 <span class="nb">false</span>
 % go run test.go -b
 <span class="nb">true</span></code></pre></div>
 
 <p>It&#39;s simple and everything looks fine. 我再次天真的以为没问题了。接下来试一下另外一个程序吧。</p>
 
-<div class="highlight"><pre><code class="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;flag&quot;</span>
@@ -239,7 +249,7 @@
 
 <p>测试：</p>
 
-<div class="highlight"><pre><code class="bash">% go run test.go
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">% go run test.go
 <span class="nb">true</span>
 % go run test.go -b
 <span class="nb">true</span></code></pre></div>
@@ -254,9 +264,11 @@
 
 <h2>url</h2>
 
-<p>前段时间在处理背景图片的时候遇到一个问题，那就是url中空格的问题，空格无法直接使用，需要转换为<code>%20</code>，而在go语言中正好有一个url的包，不过url包略有小坑。在url包中有一个叫<code>url.QueryEscape</code>的全局函数，咋一看这似乎就是所需的函数。</p>
+<p>前段时间在处理背景图片的时候遇到一个问题，那就是url中空格的问题，空格无法直接使
+用，需要转换为<code>%20</code>，而在go语言中正好有一个url的包，不过url包略有小坑。
+在url包中有一个叫<code>url.QueryEscape</code>的全局函数，咋一看这似乎就是所需的函数。</p>
 
-<div class="highlight"><pre><code class="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -269,11 +281,14 @@
 
 <p>得到的结果是：</p>
 
-<div class="highlight"><pre><code class="bash">a+b</code></pre></div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">a+b</code></pre></div>
 
-<p>这个必须不是正确的结果的。那么在go中到底有没有需要的函数呢？在网上查了老半天，stackoverflow上也有类似的问题，不过却并没有的到解答。处于无奈，只能区看源代码了，还好是开源的。在go的url包的源代码中发现却是存在将空格转换成<code>%20</code>的代码段，仔细看看了，发现String()函数就是寻找的函数。</p>
+<p>这个必须不是正确的结果的。那么在go中到底有没有需要的函数呢？在网上查了老半天，
+stackoverflow上也有类似的问题，不过却并没有的到解答。处于无奈，只能区看源代码了
+，还好是开源的。在go的url包的源代码中发现却是存在将空格转换成<code>%20</code>的代码段，仔
+细看看了，发现String()函数就是寻找的函数。</p>
 
-<div class="highlight"><pre><code class="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -286,10 +301,11 @@
 
 <p>输出结果为：</p>
 
-<div class="highlight"><pre><code class="bash">a%20b &lt;nil&gt;</code></pre></div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">a%20b &lt;nil&gt;</code></pre></div>
 
 <p>也怪自己知识浅薄，不懂灵活运用，虽然知道在空格会转换成%20但是，并没有想到<code>%20</code>
-才是url中的合法字符，对文档中对String函数的描述并没有在以，虽然很无奈，这么不起眼的函数，也并没有想到会来处理编码问题（percent-encoding）。</p>
+才是url中的合法字符，对文档中对String函数的描述并没有在以，虽然很无奈，这么不起
+眼的函数，也并没有想到会来处理编码问题（percent-encoding）。</p>
 
 <p>小结一下：
 <pre>
@@ -300,13 +316,15 @@
 |encodeURIComponent|none           |
 </pre></p>
 
-<p>也许encodeURIComponent可以通过其他方法组合实现，但是去并没有提供一个单独的函数来。</p>
+<p>也许encodeURIComponent可以通过其他方法组合实现，但是去并没有提供一个单独的函数
+来。</p>
 
 <h2>unsetenv</h2>
 
-<p>公司同事在写网络代理相关的代码，在设置系统代理时会设值环境变量，在设置和清空环境变量方面golang还是很方便的，只需要使用<code>os.Setenv</code>即可，可是如果需要删除一个环境变量时该怎么办呢？经过我的探索，sorry，在golang中目前并没有unsetenv函数，不过似乎已经有准备将unsetenv添加到<code>os</code>包中。那么现在要使用unsetenv该怎么办呢？于是同事写了一个UnsetEnv函数：</p>
+<p>公司同事在写网络代理相关的代码，在设置系统代理时会设值环境变量，在设置和清空环境变量方面golang还是很方便的，只需要使用<code>os.Setenv</code>即可，可是如果需要删除一个环境变量时该怎么办呢？经过我的探索，sorry，在golang中目前并没有unsetenv函数，不过似乎已经有准备将unsetenv添加到<code>os</code>包中。那么现在要使用unsetenv该怎么办呢？
+于是同事写了一个UnsetEnv函数：</p>
 
-<div class="highlight"><pre><code class="go"><span class="kd">func</span> <span class="nx">UnsetEnv</span><span class="p">(</span><span class="nx">envName</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">UnsetEnv</span><span class="p">(</span><span class="nx">envName</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">envs</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Environ</span><span class="p">()</span>
     <span class="nx">newEnvsData</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="p">)</span>
     <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">e</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">envs</span> <span class="p">{</span>
@@ -335,7 +353,7 @@
 
 <p>这个函数在某些程序中确实可以正确的运行，可是在测试过程中我们发现这个函数对通过C绑定的gio函数调用的程序并没有生效，于是就想到使用C中的<code>unsetenv</code>函数，便有了以下的函数：</p>
 
-<div class="highlight"><pre><code class="go"><span class="kd">func</span> <span class="nx">UnsetEnv</span><span class="p">(</span><span class="nx">_name</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nx">UnsetEnv</span><span class="p">(</span><span class="nx">_name</span> <span class="kt">string</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">name</span> <span class="o">:=</span> <span class="nx">C</span><span class="p">.</span><span class="nx">CString</span><span class="p">(</span><span class="nx">_name</span><span class="p">)</span>
     <span class="k">defer</span> <span class="nx">C</span><span class="p">.</span><span class="nx">free</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span>
     <span class="nx">C</span><span class="p">.</span><span class="nx">unsetenv</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span>
@@ -346,22 +364,20 @@
 <p>我们并没有深入挖掘这个问题，也并不是非常确定是不是我们使用的姿势不对，这里仅供参考。</p>
 
       <footer class="entry-meta">
-        <span class="entry-tags"><a href="http://kosl90.github.io/tags/index.html#golang" title="Pages tagged golang" rel="tag" class="tag">golang</a><a href="http://kosl90.github.io/tags/index.html#go" title="Pages tagged go" rel="tag" class="tag">go</a></span>
-        <span><a href="http://kosl90.github.io/golang-traps" rel="bookmark" title="Golang Traps" itemprop="url">Golang Traps</a> was published on <span class="entry-date date published updated"><time datetime="2014-02-20T00:00:00+08:00" itemprop="datePublished">February 20, 2014</time></span></span>
-        (revised: <span class="entry-date date modified"><time datetime="2014-02-22" itemprop="dateModified">02/22/2014</time></span>)
-        <span class="author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name" class="fn"><a href="http://kosl90.github.io/about" title="About Lee" itemprop="url">Lee</a></span></span>
+        <span class="entry-tags"><a href="http://kosl90.github.io/tags/#golang" title="Pages tagged golang" class="tag">golang</a><a href="http://kosl90.github.io/tags/#go" title="Pages tagged go" class="tag">go</a></span>
+        <span><a href="http://kosl90.github.io/golang-traps" rel="bookmark" title="Golang Traps">Golang Traps</a> was published on <span class="entry-date date published updated"><time datetime="2014-02-20T00:00:00+08:00">February 20, 2014</time></span></span>
+        (revised: <span class="entry-date date modified"><time datetime="2014-02-22">02/22/2014</time></span>)
+        <span class="author vcard"><span class="fn"><a href="http://kosl90.github.io/about/" title="About Lee">Lee</a></span></span>
         <div class="social-share">
-          <ul class="socialcount socialcount-small inline-list" data-url="http://kosl90.github.io/golang-traps" data-share-text="Golang Traps">
-            <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://kosl90.github.io/golang-traps" title="Share on Facebook"><span class="count"><i class="icon-facebook-sign"></i> Like</span></a></li>
-            <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://kosl90.github.io/golang-traps" title="Share on Twitter"><span class="count"><i class="icon-twitter-sign"></i> Tweet</span></a></li>
-            <li class="googleplus"><a href="https://plus.google.com/share?url=http://kosl90.github.io/golang-traps" title="Share on Google Plus"><span class="count"><i class="icon-google-plus-sign"></i> +1</span></a></li>
+          <ul class="socialcount socialcount-small inline-list">
+            <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://kosl90.github.io/golang-traps" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
+            <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://kosl90.github.io/golang-traps" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
+            <li class="googleplus"><a href="https://plus.google.com/share?url=http://kosl90.github.io/golang-traps" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
           </ul>
         </div><!-- /.social-share -->
       </footer>
     </div><!-- /.entry-content -->
-    <section id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </section><!-- /#disqus_thread -->
+    <section id="disqus_thread"></section><!-- /#disqus_thread -->
     
     <div class="read-more">
       
@@ -393,10 +409,7 @@
 
 <div class="footer-wrapper">
   <footer role="contentinfo">
-    <span>&copy; 2014 Lee. Powered by <a
-        class='footer_link' href="http://jekyllrb.com">Jekyll</a> using the <a
-        class='footer_link' href="http://mademistakes.com/">HPSTR Theme</a>.</span>
-
+    <span>&copy; 2014 Lee. Powered by <a href="http://jekyllrb.com">Jekyll</a> using the <a href="http://mademistakes.com/hpstr/">HPSTR Theme</a>.</span>
   </footer>
 </div><!-- /.footer-wrapper -->
 

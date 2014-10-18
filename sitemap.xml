@@ -6,6 +6,36 @@
     
     
     <url>
+        <loc>http://kosl90.github.io/about/</loc>
+    </url>
+    
+    <url>
+        <loc>http://kosl90.github.io/archive/index.html</loc>
+    </url>
+    
+    <url>
+        <loc>http://kosl90.github.io/feed.xml</loc>
+    </url>
+    
+    <url>
+        <loc>http://kosl90.github.io/index.html</loc>
+    </url>
+    
+    <url>
+        <loc>http://kosl90.github.io/posts/</loc>
+    </url>
+    
+    <url>
+        <loc>http://kosl90.github.io/sitemap.xml</loc>
+    </url>
+    
+    <url>
+        <loc>http://kosl90.github.io/tags/</loc>
+    </url>
+    
+
+    
+    <url>
         <loc>http://kosl90.github.io/golang-reflect-101</loc>
     </url>
     
