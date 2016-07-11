@@ -166,7 +166,7 @@
 
 <p>在golang中，提供了一个<code>reflect</code>包，这个包主要包含了两个主要类型<code>Type</code>和<code>Value</code>，并且在<code>reflect</code>包中还提供了两个非常方便的函数<code>TypeOf</code>和<code>ValueOf</code>来分别获得这两种类型。下面来看一段示例代码：</p>
 
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><code class="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -273,7 +273,7 @@
 
 <p>如果运行这段代码会得到一下输出：</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">Type: *main.Struct
+<div class="highlight"><pre><code class="bash">Type: *main.Struct
 Value: &lt;*main.Struct Value&gt;
 Kind: ptr
 struct field 0: Pub, string, embeded?: <span class="nb">false</span>, tag: 
@@ -287,9 +287,9 @@ call Struct.Sum: <span class="o">[</span>&lt;int Value&gt;<span class="o">]</spa
 call Struct.Name: <span class="o">[</span>David Beckham<span class="o">]</span> &lt;nil&gt;
 call Struct.sum: <span class="o">[]</span> <span class="s2">&quot;sum&quot;</span>: unexported field cannot be called
 call Struct.s: <span class="o">[]</span> <span class="s2">&quot;s&quot;</span>: is not existed <span class="k">for</span> *main.Struct
-<span class="k">function</span> argument 0: int
-<span class="k">function</span> argument 1: int
-<span class="k">function</span> <span class="k">return</span> value 0: int
+<span class="k">function </span>argument 0: int
+<span class="k">function </span>argument 1: int
+<span class="k">function return </span>value 0: int
 Call sum<span class="o">(</span>1, 3<span class="o">)</span> <span class="k">function</span>: 4</code></pre></div>
 
 <h2>代码分析</h2>
@@ -318,7 +318,7 @@ Call sum<span class="o">(</span>1, 3<span class="o">)</span> <span class="k">fun
 
 <p>下面是来自<code>reflect</code>包文档中的一个例子，更详细的展示了<code>struct tag</code>的用法：</p>
 
-<div class="highlight"><pre><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+<div class="highlight"><pre><code class="go"><span class="kn">package</span> <span class="nx">main</span>
 
 <span class="kn">import</span> <span class="p">(</span>
     <span class="s">&quot;fmt&quot;</span>
@@ -422,7 +422,7 @@ Call sum<span class="o">(</span>1, 3<span class="o">)</span> <span class="k">fun
 
 <div class="footer-wrapper">
   <footer role="contentinfo">
-    <span>&copy; 2014 Lee. Powered by <a href="http://jekyllrb.com">Jekyll</a> using the <a href="http://mademistakes.com/hpstr/">HPSTR Theme</a>.</span>
+    <span>&copy; 2016 Lee. Powered by <a href="http://jekyllrb.com">Jekyll</a> using the <a href="http://mademistakes.com/hpstr/">HPSTR Theme</a>.</span>
   </footer>
 </div><!-- /.footer-wrapper -->
 
