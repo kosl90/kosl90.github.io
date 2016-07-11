@@ -4,7 +4,7 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://kosl90.github.io/feed.xml" />
 <link rel="alternate" type="text/html" href="http://kosl90.github.io" />
-<updated>2014-10-18T18:14:14+08:00</updated>
+<updated>2016-07-11T17:50:53+08:00</updated>
 <id>http://kosl90.github.io/</id>
 <author>
   <name>Lee</name>
@@ -44,7 +44,7 @@
 
 &lt;p&gt;在golang中，提供了一个&lt;code&gt;reflect&lt;/code&gt;包，这个包主要包含了两个主要类型&lt;code&gt;Type&lt;/code&gt;和&lt;code&gt;Value&lt;/code&gt;，并且在&lt;code&gt;reflect&lt;/code&gt;包中还提供了两个非常方便的函数&lt;code&gt;TypeOf&lt;/code&gt;和&lt;code&gt;ValueOf&lt;/code&gt;来分别获得这两种类型。下面来看一段示例代码：&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;main&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;go&quot;&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;main&lt;/span&gt;
 
 &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
     &lt;span class=&quot;s&quot;&gt;&amp;quot;fmt&amp;quot;&lt;/span&gt;
@@ -151,7 +151,7 @@
 
 &lt;p&gt;如果运行这段代码会得到一下输出：&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;Type: *main.Struct
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;Type: *main.Struct
 Value: &amp;lt;*main.Struct Value&amp;gt;
 Kind: ptr
 struct field 0: Pub, string, embeded?: &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;, tag: 
@@ -165,9 +165,9 @@ call Struct.Sum: &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&amp;lt;int Value
 call Struct.Name: &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;David Beckham&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &amp;lt;nil&amp;gt;
 call Struct.sum: &lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;sum&amp;quot;&lt;/span&gt;: unexported field cannot be called
 call Struct.s: &lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;s&amp;quot;&lt;/span&gt;: is not existed &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; *main.Struct
-&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; argument 0: int
-&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; argument 1: int
-&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; value 0: int
+&lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;argument 0: int
+&lt;span class=&quot;k&quot;&gt;function &lt;/span&gt;argument 1: int
+&lt;span class=&quot;k&quot;&gt;function return &lt;/span&gt;value 0: int
 Call sum&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1, 3&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt;: 4&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h2&gt;代码分析&lt;/h2&gt;
@@ -196,7 +196,7 @@ Call sum&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1, 3&lt;span class=&quot;o
 
 &lt;p&gt;下面是来自&lt;code&gt;reflect&lt;/code&gt;包文档中的一个例子，更详细的展示了&lt;code&gt;struct tag&lt;/code&gt;的用法：&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;main&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;go&quot;&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;main&lt;/span&gt;
 
 &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
     &lt;span class=&quot;s&quot;&gt;&amp;quot;fmt&amp;quot;&lt;/span&gt;
@@ -471,7 +471,7 @@ goroutine和channel使事情变的简单。可是作为一门新的语言golang�
 
 &lt;p&gt;这个问题是我无意中在某项目中看到解决方案时发现的，解决方案也比较简单。&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Exist&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;go&quot;&gt;&lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Exist&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;nx&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Stat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;nil&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;IsExist&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -479,17 +479,15 @@ goroutine和channel使事情变的简单。可是作为一门新的语言golang�
 &lt;h2&gt;没有拷贝文件的函数&lt;/h2&gt;
 
 &lt;p&gt;关于这一点，在github上有一个&lt;a href=&quot;https://github.com/daaku/go.copyfile&quot;&gt;项目&lt;/a&gt;可以一
-定程度上的解决这个问题，不过这个项目还有待完善，而且我个人使用方法感觉很不习惯
-，还是习惯以设置flag参数的形式来使用。&lt;/p&gt;
+定程度上的解决这个问题，不过这个项目还有待完善，而且我个人感觉很不习惯。&lt;/p&gt;
 
 &lt;h2&gt;filepath.Walk&lt;/h2&gt;
 
-&lt;p&gt;这个问题是今天遇到的，当我天真的以为对一个不存在的路径进行Walk的时候，此函数什
+&lt;p&gt;这个问题是今天(2014-02-20)遇到的，当我天真的以为对一个不存在的路径进行Walk的时候，此函数什
 么也不会做，然后像其他函数一样返回错误给我的时候，可结果却是该函数仍然会调用回
-调函数。我之前还在纳闷第三个参数有什么用，好吧，今天发现你的文档的确是说了，
-&lt;strong&gt;所有&lt;/strong&gt;错误都在回调函数中处理，这是我的错。&lt;/p&gt;
+调函数。后来在文档中发现了这个小秘密，&lt;strong&gt;所有&lt;/strong&gt;错误都在回调函数中通过第三个参数处理。我之前还在纳闷回调中的第三个参数有什么用，显然这是我没有仔细阅读文档而相当然的错。&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;main&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;go&quot;&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;main&lt;/span&gt;
 &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
     &lt;span class=&quot;s&quot;&gt;&amp;quot;fmt&amp;quot;&lt;/span&gt;
     &lt;span class=&quot;s&quot;&gt;&amp;quot;os&amp;quot;&lt;/span&gt;
@@ -514,17 +512,17 @@ goroutine和channel使事情变的简单。可是作为一门新的语言golang�
 
 &lt;p&gt;在吐槽这个之前，先简单的介绍一下命令行参数吧。命令行参数大致分为option（选项）/argument（参数）/command（命令）三种类型。&lt;/p&gt;
 
-&lt;p&gt;option的作用是改变程序的行为，通常具有长和短两种形式，根据选项行为可分为switches(开关)和flags（标志）两类。switches通常用于开启或关闭某项功能，不接受任何参数，而flags则通常会接受参数。&lt;/p&gt;
+&lt;p&gt;option的作用是改变程序的行为，通常具有长和短两种形式，根据选项行为可分为switches(开关)和flags（标志）两类。switches通常用于开启或关闭某项功能，不接受任何参数，而flags则通常需要接受参数。&lt;/p&gt;
 
 &lt;p&gt;argument通常是命令行中除去option的部分，被操作的对象，可能是文件或者目录等等。&lt;/p&gt;
 
-&lt;p&gt;与option和argument不同，command具有更明确的意义，用来管理一些列复杂的行为。使一些程序比较复杂，例如git，更易于使用和管理。由于command的出现导致option分为了global option和command option。&lt;/p&gt;
+&lt;p&gt;与option和argument不同，command具有更明确的意义，用来管理一些列复杂的行为。使一些比较复杂的程序，例如git，更易于使用和管理。同时，由于command的出现导致option分为了global option和command option。&lt;/p&gt;
 
 &lt;p&gt;关于命令行更详细的介绍《python标准库》中关于命令行模块和《Build Awesome Command-Line Applications in Ruby 2》都是不错的资料。&lt;/p&gt;
 
 &lt;p&gt;言归正传，go语言中flag.Bool是典型的开关型选项。在使用前，当然要写一个小程序来学习一下：&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;main&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;go&quot;&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;main&lt;/span&gt;
 
 &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
     &lt;span class=&quot;s&quot;&gt;&amp;quot;flag&amp;quot;&lt;/span&gt;
@@ -540,14 +538,14 @@ goroutine和channel使事情变的简单。可是作为一门新的语言golang�
 
 &lt;p&gt;测试：&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;% go run test.go
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;% go run test.go
 &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;
 % go run test.go -b
 &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;It&amp;#39;s simple and everything looks fine. 我再次天真的以为没问题了。接下来试一下另外一个程序吧。&lt;/p&gt;
+&lt;p&gt;这个程序很简单，使用方式也很简单，并且程序的运行结果也正是所期待的结果。我再次天真的以为没问题了。接下来试一下另外一个程序吧。&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;main&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;go&quot;&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;main&lt;/span&gt;
 
 &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
     &lt;span class=&quot;s&quot;&gt;&amp;quot;flag&amp;quot;&lt;/span&gt;
@@ -563,18 +561,20 @@ goroutine和channel使事情变的简单。可是作为一门新的语言golang�
 
 &lt;p&gt;测试：&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;% go run test.go
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;% go run test.go
 &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;
 % go run test.go -b
 &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;WTF!!!您这是闹哪样啊，欺负新来的是吧，反人类是吧，你还可以再叼一点大丈夫的。好吧，我承认我又没读文档，因为在文档上找到了这样一句话：&lt;/p&gt;
+&lt;p&gt;WTF!!!您这是闹哪样啊，欺负新来的是吧，你还可以再叼一点没关系的。好吧，我承认我又没读文档，因为在文档上找到了这样一句话：&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;You must use the -flag=false form to turn off a boolean flag.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;所以说大牛的世界你不懂，你所需要做的就是好好读文档，如果有的话，然后吐槽吧。&lt;/p&gt;
+&lt;p&gt;事实再一次教育我，Please RTFM carefully。只是我实在无法理解这样一种设计是出于何种原因。&lt;/p&gt;
+
+&lt;p&gt;UPDATE：发现一个不错的命令行解析库&lt;a href=&quot;https://github.com/alecthomas/kingpin&quot;&gt;kingpin&lt;/a&gt;。&lt;/p&gt;
 
 &lt;h2&gt;url&lt;/h2&gt;
 
@@ -582,7 +582,7 @@ goroutine和channel使事情变的简单。可是作为一门新的语言golang�
 用，需要转换为&lt;code&gt;%20&lt;/code&gt;，而在go语言中正好有一个url的包，不过url包略有小坑。
 在url包中有一个叫&lt;code&gt;url.QueryEscape&lt;/code&gt;的全局函数，咋一看这似乎就是所需的函数。&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;main&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;go&quot;&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;main&lt;/span&gt;
 
 &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
     &lt;span class=&quot;s&quot;&gt;&amp;quot;fmt&amp;quot;&lt;/span&gt;
@@ -595,14 +595,14 @@ goroutine和channel使事情变的简单。可是作为一门新的语言golang�
 
 &lt;p&gt;得到的结果是：&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;a+b&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;a+b&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;这个必须不是正确的结果的。那么在go中到底有没有需要的函数呢？在网上查了老半天，
-stackoverflow上也有类似的问题，不过却并没有的到解答。处于无奈，只能区看源代码了
+&lt;p&gt;这个必须不是正确的结果。那么在go中到底有没有需要的函数呢？在网上查了老半天，
+stackoverflow上也有类似的问题，不过却并没有的到解答。处于无奈，只能去看源代码了
 ，还好是开源的。在go的url包的源代码中发现却是存在将空格转换成&lt;code&gt;%20&lt;/code&gt;的代码段，仔
-细看看了，发现String()函数就是寻找的函数。&lt;/p&gt;
+细看看了，发现&lt;code&gt;String()&lt;/code&gt;函数就是寻找的函数。&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;main&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;go&quot;&gt;&lt;span class=&quot;kn&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;main&lt;/span&gt;
 
 &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
     &lt;span class=&quot;s&quot;&gt;&amp;quot;fmt&amp;quot;&lt;/span&gt;
@@ -615,11 +615,7 @@ stackoverflow上也有类似的问题，不过却并没有的到解答。处于�
 
 &lt;p&gt;输出结果为：&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;a%20b &amp;lt;nil&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;也怪自己知识浅薄，不懂灵活运用，虽然知道在空格会转换成%20但是，并没有想到&lt;code&gt;%20&lt;/code&gt;
-才是url中的合法字符，对文档中对String函数的描述并没有在以，虽然很无奈，这么不起
-眼的函数，也并没有想到会来处理编码问题（percent-encoding）。&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;a%20b &amp;lt;nil&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;小结一下：
 &lt;pre&gt;
@@ -630,15 +626,15 @@ stackoverflow上也有类似的问题，不过却并没有的到解答。处于�
 |encodeURIComponent|none           |
 &lt;/pre&gt;&lt;/p&gt;
 
-&lt;p&gt;也许encodeURIComponent可以通过其他方法组合实现，但是去并没有提供一个单独的函数
+&lt;p&gt;也许encodeURIComponent可以通过其他方法组合实现，但是却并没有提供一个单独的函数
 来。&lt;/p&gt;
 
 &lt;h2&gt;unsetenv&lt;/h2&gt;
 
-&lt;p&gt;公司同事在写网络代理相关的代码，在设置系统代理时会设值环境变量，在设置和清空环境变量方面golang还是很方便的，只需要使用&lt;code&gt;os.Setenv&lt;/code&gt;即可，可是如果需要删除一个环境变量时该怎么办呢？经过我的探索，sorry，在golang中目前并没有unsetenv函数，不过似乎已经有准备将unsetenv添加到&lt;code&gt;os&lt;/code&gt;包中。那么现在要使用unsetenv该怎么办呢？
+&lt;p&gt;公司同事在写网络代理相关的代码，在设置系统代理时会设值环境变量，在设置和清空环境变量方面golang还是很方便的，只需要使用&lt;code&gt;os.Setenv&lt;/code&gt;即可，可是如果需要删除一个环境变量时该怎么办呢？经过我的探索，sorry，在golang中目前并没有unsetenv函数，不过似乎已经有准备在以后的版本中将unsetenv添加到&lt;code&gt;os&lt;/code&gt;包中。那么现在要使用unsetenv该怎么办呢？
 于是同事写了一个UnsetEnv函数：&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;UnsetEnv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;envName&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;go&quot;&gt;&lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;UnsetEnv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;envName&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;nx&quot;&gt;envs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Environ&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
     &lt;span class=&quot;nx&quot;&gt;newEnvsData&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;make&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;e&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;range&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;envs&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -667,7 +663,7 @@ stackoverflow上也有类似的问题，不过却并没有的到解答。处于�
 
 &lt;p&gt;这个函数在某些程序中确实可以正确的运行，可是在测试过程中我们发现这个函数对通过C绑定的gio函数调用的程序并没有生效，于是就想到使用C中的&lt;code&gt;unsetenv&lt;/code&gt;函数，便有了以下的函数：&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-go&quot; data-lang=&quot;go&quot;&gt;&lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;UnsetEnv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;_name&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;go&quot;&gt;&lt;span class=&quot;kd&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;UnsetEnv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;_name&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;CString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;k&quot;&gt;defer&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;free&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
     &lt;span class=&quot;nx&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;unsetenv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
