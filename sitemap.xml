@@ -36,6 +36,10 @@
 
     
     <url>
+        <loc>http://kosl90.github.io/interview</loc>
+    </url>
+    
+    <url>
         <loc>http://kosl90.github.io/golang-reflect-101</loc>
     </url>
     
