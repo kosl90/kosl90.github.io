@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Fix Newline to Space | kosl90&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="jekyll converts newline to space, it&apos;s not good for chinese.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fix Newline to Space">
+<meta property="og:url" content="https://kosl90.github.io/2014-02-23-fix-newline-to-space/index.html">
+<meta property="og:site_name" content="kosl90's blog">
+<meta property="og:description" content="jekyll converts newline to space, it&apos;s not good for chinese.">
+<meta property="og:updated_time" content="2016-12-27T12:40:26.276Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Fix Newline to Space">
+<meta name="twitter:description" content="jekyll converts newline to space, it&apos;s not good for chinese.">
+  
+    <link rel="alternate" href="/atom.xml" title="kosl90&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">kosl90&#39;s blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://kosl90.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2014-02-23-fix-newline-to-space" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014-02-23-fix-newline-to-space/" class="article-date">
+  <time datetime="2016-12-27T12:40:26.276Z" itemprop="datePublished">2016-12-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Fix Newline to Space
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>更新：由于jekyll的更新，post_filter已经被移除，因此修改方式已经无效。</p>
+<p>之前，<a href="http://randomk.gitcafe.com/" target="_blank" rel="external">RandomK</a>说我的blog有bug，其实在他说之前我就已经知道了，只是当时比较晚，所以没有修，今天周末将其解决之。</p>
+<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>我使用的是redcarpet作为markdown的转换器，jekyll将多行的段落转换成html之后在浏览<br>器中显示会很奇怪，在原始的markdown中的某一行最后一个字与下一行的第一个字之间存<br>在一个空格，作为使用单词的外国淫来说没什么问题，可是作为大天朝子民是无法忍受的。</p>
+<figure><br><a href="/images/fix-space/space.png" class="fancybox"><br><img data-echo="/images/fix-space/space.png" alt="space" title="space"><br></a><br><figcaption>文字之间存在空格</figcaption><br></figure>
+
+
+<h2 id="解决方案一-段落写为一行"><a href="#解决方案一-段落写为一行" class="headerlink" title="解决方案一 段落写为一行"></a>解决方案一 段落写为一行</h2><p>我只能说这种行为好痛苦。</p>
+<h2 id="解决方案二-在markdown转换为html前处理一下"><a href="#解决方案二-在markdown转换为html前处理一下" class="headerlink" title="解决方案二 在markdown转换为html前处理一下"></a>解决方案二 在markdown转换为html前处理一下</h2><p>由于无法忍受第一种解决方案，只能在markdown转换为html之前进行一些预处理了。在网<br>上搜索一番后发现果然不止我一人遇到此问题，并且找到了一个<a href="http://chenyufei.info/blog/2011-12-23/fix-chinese-newline-becomes-space-in-browser-problem/" target="_blank" rel="external">解决方案</a>。<br>不过该解决方案有一定的局限性，第一，没有处理汉英和英汉这两种情况，第二，没有处<br>理摘要。</p>
+<p>为了解决以上两个问题，必须做出一些更改。</p>
+<p>首先，作为一个非octopress用户，果断得去github上将octopress的<a href="https://github.com/imathis/octopress/blob/master/plugins/post_filters.rb" target="_blank" rel="external">post_filters plugins</a>得到，<br>然后，从<a href="http://chenyufei.info/blog/2011-12-23/fix-chinese-newline-becomes-space-in-browser-problem/" target="_blank" rel="external">解决 Markdown 转 HTML 中文换行变空格的问题</a>将代码拷贝并保存<br>到存放plugins的目录。然后就可以开始修改了。</p>
+<p>修改1:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">String</span></span></div><div class="line">  han = <span class="string">'\p&#123;Han&#125;|[，。？；：‘’“”、！……（）]'</span></div><div class="line">  @@hh = <span class="regexp">/(<span class="subst">#&#123;han&#125;</span>) *\n *(<span class="subst">#&#123;han&#125;</span>)/m</span></div><div class="line">  @@he = <span class="regexp">/(<span class="subst">#&#123;han&#125;</span>) *\n *(\p&#123;Alpha&#125;)/m</span></div><div class="line">  @@eh = <span class="regexp">/(\p&#123;Alpha&#125;) *\n *(<span class="subst">#&#123;han&#125;</span>)/m</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">join_chinese!</span></span></div><div class="line">    gsub!(@@hh, <span class="string">'\1\2'</span>)</div><div class="line">    gsub!(@@he, <span class="string">'\1\2'</span>)</div><div class="line">    gsub!(@@eh, <span class="string">'\1\2'</span>)</div><div class="line">    <span class="keyword">self</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>经过修改后，blog就能够正常显示了。</p>
+<figure class="half"><br><a href="/images/fix-space/space.png" class="fancybox"><br><img data-echo="/images/fix-space/space.png" alt="space" title="space"><br></a><br><a href="/images/fix-space/no-space.png" class="fancybox"><br><img data-echo="/images/fix-space/no-space.png" alt="no-space" title="no space"><br></a><br>    <figcaption>第一阶段成果</figcaption><br></figure>
+
+<p>修改2:<br>虽然blog中的问题解决了，但是摘要部分并没有的到解决。</p>
+<figure><br><a href="/images/fix-space/wrong-excerpt.png" class="fancybox"><br><img data-echo="/images/fix-space/wrong-excerpt.png" alt="wrong-excerpt" title="wrong-excerpt"><br></a><br>    <figcaption>摘要中显示错误</figcaption><br></figure><br>由于在pre_render中添加<code>post.excerpt.join_chinese!</code>会导致jekyll创建html时失败，<br>因此采用添加一个filter供Liquid使用，从而解决解决此问题。<br><br>将一下代码加入Jekyll模块中<br><br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">module</span> <span class="title">TemplateJoinChineseFilter</span></span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">join_chinese</span><span class="params">(input)</span></span></div><div class="line">    input.join_chinese!</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure><br><br>然后将<code>Liquid::Template.register_filter(Jekyll::TemplateJoinChineseFilter)</code>添加到最后一行。<br>最后，只需要在使用摘要的时候使用<code>{{ page.excerpt | join_chinese }}</code>替代<code>{{ page.excerpt }}</code>即可。<br><figure class="half"><br><a href="/images/fix-space/wrong-excerpt.png" class="fancybox"><br><img data-echo="/images/fix-space/wrong-excerpt.png" alt="wrong-excerpt" title="wrong-excerpt"><br></a><br><a href="/images/fix-space/excerpt.png" class="fancybox"><br><img data-echo="/images/fix-space/excerpt.png" alt="excerpt" title="excerpt"><br></a><br><figcaption>摘要中空格也不存在了</figcaption><br></figure>
+
+
+<h1 id="The-End"><a href="#The-End" class="headerlink" title="The End"></a>The End</h1><p>问题基本得到了解决，不过还有几点需要注意：</p>
+<ol>
+<li>markdown中标题与正文之间需要一行空白行（我不习惯）。</li>
+<li>标点符号和数字没有处理，因此有些地方是不适合换行然后通过插件解决的。</li>
+<li>应该还存在这一些bug。</li>
+</ol>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><a href="http://chenyufei.info/blog/2011-12-23/fix-chinese-newline-becomes-space-in-browser-problem/" target="_blank" rel="external">解决 Markdown 转 HTML 中文换行变空格的问题</a>。</li>
+<li><a href="https://github.com/imathis/octopress/blob/master/plugins/post_filters.rb" target="_blank" rel="external">post_filter</a>。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://kosl90.github.io/2014-02-23-fix-newline-to-space/" data-id="cix7i6arb0001271juqhcc7ce" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jekyll/">jekyll</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014-06-20-golang-reflect-101/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Golang Reflect 101
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014-03-09-bit-getter-and-setter/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Bit Getter and Setter</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/bit-operation/">bit-operation</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cpp/">cpp</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/">go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/golang/">golang</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jekyll/">jekyll</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/反思与总结/">反思与总结</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/bit-operation/" style="font-size: 10px;">bit-operation</a> <a href="/tags/c/" style="font-size: 10px;">c</a> <a href="/tags/c/" style="font-size: 10px;">c++</a> <a href="/tags/cpp/" style="font-size: 10px;">cpp</a> <a href="/tags/go/" style="font-size: 20px;">go</a> <a href="/tags/golang/" style="font-size: 20px;">golang</a> <a href="/tags/jekyll/" style="font-size: 10px;">jekyll</a> <a href="/tags/反思与总结/" style="font-size: 10px;">反思与总结</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2014-02-20-golang-traps/">Golang Traps</a>
+          </li>
+        
+          <li>
+            <a href="/2014-06-20-golang-reflect-101/">Golang Reflect 101</a>
+          </li>
+        
+          <li>
+            <a href="/2014-02-23-fix-newline-to-space/">Fix Newline to Space</a>
+          </li>
+        
+          <li>
+            <a href="/2014-03-09-bit-getter-and-setter/">Bit Getter and Setter</a>
+          </li>
+        
+          <li>
+            <a href="/2016-08-09-interview/">2016找工作记1 - 一次面试的反思</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 kosl90<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+<script src="/js/echo.min.js"></script>
+
+<script>echo.init();</script>
+
+  </div>
+</body>
+</html>
