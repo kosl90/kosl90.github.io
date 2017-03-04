@@ -1,58 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>http://kosl90.github.io</loc>
+        <loc></loc>
     </url>
     
     
     <url>
-        <loc>http://kosl90.github.io/about/</loc>
+        <loc>/about/</loc>
     </url>
     
     <url>
-        <loc>http://kosl90.github.io/archive/index.html</loc>
+        <loc>/archive/index.html</loc>
     </url>
     
     <url>
-        <loc>http://kosl90.github.io/feed.xml</loc>
+        <loc>/feed.xml</loc>
     </url>
     
     <url>
-        <loc>http://kosl90.github.io/index.html</loc>
+        <loc>/</loc>
     </url>
     
     <url>
-        <loc>http://kosl90.github.io/posts/</loc>
+        <loc>/posts/</loc>
     </url>
     
     <url>
-        <loc>http://kosl90.github.io/sitemap.xml</loc>
+        <loc>/sitemap.xml</loc>
     </url>
     
     <url>
-        <loc>http://kosl90.github.io/tags/</loc>
+        <loc>/tags/</loc>
     </url>
     
 
     
     <url>
-        <loc>http://kosl90.github.io/interview</loc>
+        <loc>/interview</loc>
     </url>
     
     <url>
-        <loc>http://kosl90.github.io/golang-reflect-101</loc>
+        <loc>/golang-reflect-101</loc>
     </url>
     
     <url>
-        <loc>http://kosl90.github.io/bit-getter-and-setter</loc>
+        <loc>/bit-getter-and-setter</loc>
     </url>
     
     <url>
-        <loc>http://kosl90.github.io/fix-newline-to-space</loc>
+        <loc>/fix-newline-to-space</loc>
     </url>
     
     <url>
-        <loc>http://kosl90.github.io/golang-traps</loc>
+        <loc>/golang-traps</loc>
     </url>
     
 </urlset>
